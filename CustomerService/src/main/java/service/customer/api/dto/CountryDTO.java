@@ -4,20 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
 @Component
-@Getter
-@Setter
-@AllArgsConstructor
-@EqualsAndHashCode
-@ToString
-@SuppressWarnings("unused")
 public class CountryDTO extends BaseDTO {
 
 	private static final long serialVersionUID = 361840965165560370L;
@@ -25,5 +12,24 @@ public class CountryDTO extends BaseDTO {
 	private String countryName;
 	private List<CityDTO> cities;
 	private AddressesDTO addresses;
-
+	
+	public String getCountryName() {
+		return countryName;
+	}
+	public void setCountryName(String countryName) {
+		this.countryName = countryName;
+	}
+	public List<CityDTO> getCities() {
+		return cities;
+	}
+	public void setCities(List<CityDTO> cities) {
+		this.cities = cities;
+	}
+	public AddressesDTO getAddresses() {
+		return addresses;
+	}
+	public void setAddresses(AddressesDTO addresses) {
+		this.addresses = addresses;
+	}
+	
 }
