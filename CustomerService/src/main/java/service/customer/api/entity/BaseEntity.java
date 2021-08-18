@@ -2,7 +2,6 @@ package service.customer.api.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -31,7 +30,7 @@ public class BaseEntity implements Serializable {
 	private Long id;
 
 	@Column(name = "publicId", length = 255, nullable = false, unique = true)
-	private UUID publicId;
+	private String publicId;
 
 	@Column(name = "description", length = 250)
 	private String description;
@@ -71,11 +70,11 @@ public class BaseEntity implements Serializable {
 		this.id = id;
 	}
 
-	public UUID getPublicId() {
+	public String getPublicId() {
 		return publicId;
 	}
 
-	public void setPublicId(UUID publicId) {
+	public void setPublicId(String publicId) {
 		this.publicId = publicId;
 	}
 

@@ -4,14 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class CustomerResponseModel {
+public class CityResponseModel {
 	
 	private String publicId;
-	private String customerName;
+	private String cityName;
+	private String countryName;
 	private String description;
 	private Boolean enabled;
 	
@@ -22,11 +22,17 @@ public class CustomerResponseModel {
 	public void setPublicId(String publicId) {
 		this.publicId = publicId;
 	}
-	public String getCustomerName() {
-		return customerName;
+	public String getCityName() {
+		return cityName;
 	}
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+	public String getCountryName() {
+		return countryName;
+	}
+	public void setCountryName(String countryName) {
+		this.countryName = countryName;
 	}
 	public String getDescription() {
 		return description;

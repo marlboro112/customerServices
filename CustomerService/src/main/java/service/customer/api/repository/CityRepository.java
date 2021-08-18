@@ -9,5 +9,6 @@ import service.customer.api.entity.CityEntity;
 public interface CityRepository extends JpaRepository<CityEntity, Long> {
 	
 	CityEntity findCityByPublicId (String publicId);
+	CityEntity findByCityName (String cityName);
 
 }

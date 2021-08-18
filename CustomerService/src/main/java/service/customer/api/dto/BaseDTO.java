@@ -2,7 +2,6 @@ package service.customer.api.dto;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
@@ -13,7 +12,7 @@ public class BaseDTO implements Serializable {
 	
 	
 	private Long id;
-	private UUID publicId;
+	private String publicId;
 	private String description;
 	private String createdBy;
 	private Date created;
@@ -30,10 +29,10 @@ public class BaseDTO implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public UUID getPublicId() {
+	public String getPublicId() {
 		return publicId;
 	}
-	public void setPublicId(UUID publicId) {
+	public void setPublicId(String publicId) {
 		this.publicId = publicId;
 	}
 	public String getDescription() {

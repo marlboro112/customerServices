@@ -52,7 +52,7 @@ public class CustomerServiceImpl implements CustomerService {
 		CustomerEntity checkStoredCustomer  = customerRepository.findByCustomerName(customer.getCustomerName());
 		if(checkStoredCustomer != null) throw new RuntimeException("Customer already availbale");
 		
-		customerDTO.setPublicId(UUID.randomUUID());		
+		customerDTO.setPublicId(UUID.randomUUID().toString());		
 		customerDTO.setCreated(currentData);
 		customerDTO.setCreatedBy(customer.getLogedInUserPublicId());
 		customerDTO.setModified(currentData);
@@ -69,7 +69,7 @@ public class CustomerServiceImpl implements CustomerService {
 					ContactPersonesDTO contactPersonDTO = new ContactPersonesDTO();
 					BeanUtils.copyProperties(contactPersones, contactPersonDTO);
 					contactPersonDTO.setCustomer(customerDTO);
-					contactPersonDTO.setPublicId(UUID.randomUUID());
+					contactPersonDTO.setPublicId(UUID.randomUUID().toString());
 					contactPersonDTO.setCreated(currentData);
 					contactPersonDTO.setCreatedBy(customer.getLogedInUserPublicId());
 					contactPersonDTO.setModified(currentData);
@@ -86,7 +86,7 @@ public class CustomerServiceImpl implements CustomerService {
 					AddressesDTO addressesDTO = new AddressesDTO();
 					BeanUtils.copyProperties(address, addressesDTO);
 					addressesDTO.setCustomer(customerDTO);
-					addressesDTO.setPublicId(UUID.randomUUID());
+					addressesDTO.setPublicId(UUID.randomUUID().toString());
 					addressesDTO.setCreated(currentData);
 					addressesDTO.setCreatedBy(customer.getLogedInUserPublicId());
 					addressesDTO.setModified(currentData);

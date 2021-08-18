@@ -8,6 +8,7 @@ import service.customer.api.entity.CountryEntity;
 @Repository
 public interface CountryRepository extends JpaRepository<CountryEntity, Long> {
 	
-	CountryEntity findCountryByPublicId(String publicId);
+	CountryEntity findByPublicId(String publicId);
+	CountryEntity findByCountryName(String countryName); 
 
 }
