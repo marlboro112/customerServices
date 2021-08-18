@@ -4,6 +4,7 @@ import service.customer.api.dto.CountryDTO;
 
 public interface CountryService {
 
-CountryDTO getCountry(String countryPublicId);
+	CountryDTO getCountryByPublicId(String publicId);
+	
 
 }

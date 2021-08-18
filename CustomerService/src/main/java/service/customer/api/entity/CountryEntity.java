@@ -10,14 +10,10 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 
 @Entity
 @Table(name = "Country")
-@Getter
-@Setter
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode
@@ -29,5 +25,23 @@ public class CountryEntity extends BaseEntity {
 
 	@OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
 	private List<CityEntity> cities;
+
+	public String getCountryName() {
+		return countryName;
+	}
+
+	public void setCountryName(String countryName) {
+		this.countryName = countryName;
+	}
+
+	public List<CityEntity> getCities() {
+		return cities;
+	}
+
+	public void setCities(List<CityEntity> cities) {
+		this.cities = cities;
+	}
+	
+	
 
 }

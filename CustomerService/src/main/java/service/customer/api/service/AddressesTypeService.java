@@ -4,7 +4,7 @@ import service.customer.api.dto.AddressesTypeDTO;
 
 public interface AddressesTypeService {
 
-	 AddressesTypeDTO getAddressType(String typePublicId);
+	 AddressesTypeDTO getAddressTypeByPublicId(String publicId);
 	
 
 }

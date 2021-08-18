@@ -9,14 +9,10 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 
 @Entity
 @Table(name = "Addresses")
-@Getter
-@Setter
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode
@@ -45,5 +41,55 @@ public class AddressesEntity extends BaseEntity {
 	@ManyToOne
 	@JoinColumn(name = "customer_id")
 	private CustomerEntity customer;
+
+	public String getStreetName() {
+		return streetName;
+	}
+
+	public void setStreetName(String streetName) {
+		this.streetName = streetName;
+	}
+
+	public String getPostCode() {
+		return postCode;
+	}
+
+	public void setPostCode(String postCode) {
+		this.postCode = postCode;
+	}
+
+	public AddressesTypeEntity getType() {
+		return type;
+	}
+
+	public void setType(AddressesTypeEntity type) {
+		this.type = type;
+	}
+
+	public CityEntity getCity() {
+		return city;
+	}
+
+	public void setCity(CityEntity city) {
+		this.city = city;
+	}
+
+	public CountryEntity getCountry() {
+		return country;
+	}
+
+	public void setCountry(CountryEntity country) {
+		this.country = country;
+	}
+
+	public CustomerEntity getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(CustomerEntity customer) {
+		this.customer = customer;
+	}
+	
+	
 
 }

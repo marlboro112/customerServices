@@ -93,11 +93,11 @@ public class CustomerServiceImpl implements CustomerService {
 					addressesDTO.setModifiedBy(customer.getLogedInUserPublicId());
 					addressesDTO.setDeleted(false);
 					addressesDTO.setEnabled(true);
-					AddressesTypeDTO addressTypeDTO = addressesTypeService.getAddressType(address.getTypePublicId());
+					AddressesTypeDTO addressTypeDTO = addressesTypeService.getAddressTypeByPublicId(address.getTypePublicId());
 					addressesDTO.setType(addressTypeDTO);
-					CityDTO cityDTO = cityService.getCity(address.getCityPublicId());
+					CityDTO cityDTO = cityService.getCityByPublicId(address.getCityPublicId());
 					addressesDTO.setCity(cityDTO);
-					CountryDTO countryDTO = countryService.getCountry(address.getCountryPublicId());
+					CountryDTO countryDTO = countryService.getCountryByPublicId(address.getCountryPublicId());
 					addressesDTO.setCountry(countryDTO);
 					addressesDTOS.add(i, addressesDTO);
 		

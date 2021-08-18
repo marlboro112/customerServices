@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 import service.customer.api.entity.AddressesTypeEntity;
 
 @Repository
-public interface AddressTypeRepository extends JpaRepository<AddressesTypeEntity, Long> {
+public interface AddressesTypeRepository extends JpaRepository<AddressesTypeEntity, Long> {
+	
+	AddressesTypeEntity findAddressesTypeByPublicId (String publicId);
 
 }
