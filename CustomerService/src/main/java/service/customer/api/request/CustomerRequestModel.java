@@ -8,7 +8,7 @@ public class CustomerRequestModel {
 	private String customerName;
 	private String description;
 	private String LogedInUserPublicId;
-	private List<AddressRequestModel> addresses;
+	private List<AddressesRequestModel> addresses;
 	private List<ContactPersonRequestModel> contactPersones;
 	
 	public String getCustomerName() {
@@ -29,10 +29,10 @@ public class CustomerRequestModel {
 	public void setLogedInUserPublicId(String logedInUserPublicId) {
 		LogedInUserPublicId = logedInUserPublicId;
 	}
-	public List<AddressRequestModel> getAddresses() {
+	public List<AddressesRequestModel> getAddresses() {
 		return addresses;
 	}
-	public void setAddresses(List<AddressRequestModel> addresses) {
+	public void setAddresses(List<AddressesRequestModel> addresses) {
 		this.addresses = addresses;
 	}
 	public List<ContactPersonRequestModel> getContactPersones() {

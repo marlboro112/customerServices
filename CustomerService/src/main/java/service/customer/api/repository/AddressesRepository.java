@@ -8,5 +8,7 @@ import service.customer.api.entity.AddressesEntity;
 @Repository
 public interface AddressesRepository extends JpaRepository<AddressesEntity, Long> {
 	
+	AddressesEntity findByPublicId (String publicId);
+	
 
 }

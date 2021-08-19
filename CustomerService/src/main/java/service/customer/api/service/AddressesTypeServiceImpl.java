@@ -18,7 +18,7 @@ import service.customer.api.response.AddressesTypeResponseModel;
 public class AddressesTypeServiceImpl implements AddressesTypeService {
 
 	@Autowired
-	AddressesTypeRepository addressesTypeRepositroy;
+	AddressesTypeRepository addressesTypeRepository;
 
 /**************************************************************************************************************************/
 	
@@ -26,7 +26,7 @@ public class AddressesTypeServiceImpl implements AddressesTypeService {
 	@Override
 	public AddressesTypeDTO getAddressTypeByPublicId(String publicId) {
 	
-		AddressesTypeEntity addressesTypeEntity = addressesTypeRepositroy.findAddressesTypeByPublicId(publicId);
+		AddressesTypeEntity addressesTypeEntity = addressesTypeRepository.findByPublicId(publicId);
 		if(addressesTypeEntity == null || addressesTypeEntity.getDeleted() == true) throw new RuntimeException(publicId);
 		Gson gson = new Gson();
 		String temp = gson.toJson(addressesTypeEntity);
@@ -38,7 +38,7 @@ public class AddressesTypeServiceImpl implements AddressesTypeService {
 
 	// Add new Address Type to Database
 	public AddressesTypeResponseModel addAddressesType (AddressesTypeRequestModel type) {
-		AddressesTypeEntity checkStoredAddressesTypeEntity = addressesTypeRepositroy.findAddressesTypeByName(type.getName());
+		AddressesTypeEntity checkStoredAddressesTypeEntity = addressesTypeRepository.finByName(type.getName());
 		if (checkStoredAddressesTypeEntity != null) throw new RuntimeException(type.getName());
 		AddressesTypeDTO addressesTypeDTO = new AddressesTypeDTO();
 		Gson gson = new Gson();
@@ -56,9 +56,9 @@ public class AddressesTypeServiceImpl implements AddressesTypeService {
 		addressesTypeDTO.setName(type.getName());
 		
 		String temp = gson.toJson(addressesTypeDTO);
-		AddressesTypeEntity addressesTpeEntity = gson.fromJson(temp, AddressesTypeEntity.class);
-		AddressesTypeEntity savedAddressesTpeEntity = addressesTypeRepositroy.save(addressesTpeEntity);
-		temp = gson.toJson(savedAddressesTpeEntity);
+		AddressesTypeEntity addressesTypeEntity = gson.fromJson(temp, AddressesTypeEntity.class);
+		AddressesTypeEntity savedAddressesTypeEntity = addressesTypeRepository.save(addressesTypeEntity);
+		temp = gson.toJson(savedAddressesTypeEntity);
 		AddressesTypeDTO savedAddressesTypeDTO = gson.fromJson(temp, AddressesTypeDTO.class);
 		
 		AddressesTypeResponseModel returnValue = new AddressesTypeResponseModel();

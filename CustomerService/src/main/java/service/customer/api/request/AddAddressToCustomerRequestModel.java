@@ -3,7 +3,7 @@ package service.customer.api.request;
 public class AddAddressToCustomerRequestModel {
 
 	private String customerPublicId;	
-	private AddressRequestModel address;
+	private AddressesRequestModel address;
 	
 	public String getCustomerPublicId() {
 		return customerPublicId;
@@ -11,10 +11,10 @@ public class AddAddressToCustomerRequestModel {
 	public void setCustomerPublicId(String customerPublicId) {
 		this.customerPublicId = customerPublicId;
 	}
-	public AddressRequestModel getAddress() {
+	public AddressesRequestModel getAddress() {
 		return address;
 	}
-	public void setAddress(AddressRequestModel address) {
+	public void setAddress(AddressesRequestModel address) {
 		this.address = address;
 	}
 	@Override
@@ -50,7 +50,7 @@ public class AddAddressToCustomerRequestModel {
 	public String toString() {
 		return "AddAddressToCustomerRequestModel [customerPublicId=" + customerPublicId + ", address=" + address + "]";
 	}
-	public AddAddressToCustomerRequestModel(String customerPublicId, AddressRequestModel address) {
+	public AddAddressToCustomerRequestModel(String customerPublicId, AddressesRequestModel address) {
 		super();
 		this.customerPublicId = customerPublicId;
 		this.address = address;

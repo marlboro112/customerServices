@@ -19,7 +19,7 @@ import service.customer.api.dto.CountryDTO;
 import service.customer.api.dto.CustomerDTO;
 import service.customer.api.entity.CustomerEntity;
 import service.customer.api.repository.CustomerRepository;
-import service.customer.api.request.AddressRequestModel;
+import service.customer.api.request.AddressesRequestModel;
 import service.customer.api.request.ContactPersonRequestModel;
 import service.customer.api.request.CustomerRequestModel;
 import service.customer.api.response.CustomerResponseModel;
@@ -82,7 +82,7 @@ public class CustomerServiceImpl implements CustomerService {
 		//Get Customer Addresses and add to Customer Info
 				for (int i = 0; i < customer.getAddresses().size(); i++) {
 					
-					AddressRequestModel address = customer.getAddresses().get(i);
+					AddressesRequestModel address = customer.getAddresses().get(i);
 					AddressesDTO addressesDTO = new AddressesDTO();
 					BeanUtils.copyProperties(address, addressesDTO);
 					addressesDTO.setCustomer(customerDTO);
