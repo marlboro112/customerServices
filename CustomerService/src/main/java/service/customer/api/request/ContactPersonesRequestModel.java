@@ -1,4 +1,4 @@
-package service.customer.api.response;
+package service.customer.api.request;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -7,23 +7,17 @@ import lombok.ToString;
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class ContactPersonesResponseModel {
+public class ContactPersonesRequestModel {
 	
-	private String publicId;
 	private String fullName;
 	private String phoneNumber;
 	private String mobileNumber;
 	private String email;
 	private String position;
 	private String description;
-	private String customerName;
+	private String logedInUserPublicId;
+	private String customerPublicId;
 	
-	public String getPublicId() {
-		return publicId;
-	}
-	public void setPublicId(String publicId) {
-		this.publicId = publicId;
-	}
 	public String getFullName() {
 		return fullName;
 	}
@@ -60,13 +54,18 @@ public class ContactPersonesResponseModel {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getCustomerName() {
-		return customerName;
+	public String getLogedInUserPublicId() {
+		return logedInUserPublicId;
 	}
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
+	public void setLogedInUserPublicId(String logedInUserPublicId) {
+		this.logedInUserPublicId = logedInUserPublicId;
+	}
+	public String getCustomerPublicId() {
+		return customerPublicId;
+	}
+	public void setCustomerPublicId(String customerPublicId) {
+		this.customerPublicId = customerPublicId;
 	}
 	
 	
-
 }

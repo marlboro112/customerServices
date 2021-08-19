@@ -18,6 +18,18 @@ public class AddressesServiceImpl implements AddressesService {
 	@Autowired
 	AddressesRepository addressesRepository;
 	
+	@Autowired
+	CityService cityService;
+	
+	@Autowired
+	CountryService countryService;
+	
+	@Autowired
+	AddressesTypeService addressesTypeService;
+	
+	@Autowired
+	CustomerService customerService;
+	
 	
 /***********************************************************************************************/
 	// Get addresses by public id and return as DTO for internal use
@@ -30,7 +42,11 @@ public class AddressesServiceImpl implements AddressesService {
 		AddressesDTO addressesDTO = gson.fromJson(temp,AddressesDTO.class);
 		return 	addressesDTO;	
 	}
+	
 
+/**************************************************************************************************/
+
+	// Add new addresses to Database
 	@Override
 	public AddressesResponseModel addAddresses(AddressesRequestModel addresses) {
 		AddressesDTO addressesDTO = new AddressesDTO();
@@ -47,6 +63,10 @@ public class AddressesServiceImpl implements AddressesService {
 		addressesDTO.setDeletedBy("Not Deleted Yet");
 		addressesDTO.setEnabled(true);
 		addressesDTO.setStreetName(addresses.getStreetName());
+		addressesDTO.setCity(cityService.getCityByPublicId(addresses.getCityPublicId()));
+		addressesDTO.setCountry(countryService.getCountryByPublicId(addresses.getCountryPublicId()));
+		addressesDTO.setType(addressesTypeService.getAddressTypeByPublicId(addresses.getTypePublicId()));
+		addressesDTO.setCustomer(customerService.getCustomerByPublicId(addresses.getCustomerPublicId()));		
 		
 		String temp = gson.toJson(addressesDTO);
 		AddressesEntity addressesEntity = gson.fromJson(temp, AddressesEntity.class);
@@ -62,8 +82,10 @@ public class AddressesServiceImpl implements AddressesService {
 		returnValue.setDescription(savedAddressesDTO.getDescription());
 		returnValue.setCity(savedAddressesDTO.getCity().getCityName());
 		returnValue.setCountry(savedAddressesDTO.getCountry().getCountryName());
+		returnValue.setCustomerName(savedAddressesDTO.getCustomer().getCustomerName());
 		
 		return returnValue;
 	}
 
+/**************************************************************************************************/
 }

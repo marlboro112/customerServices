@@ -20,7 +20,7 @@ import service.customer.api.dto.CustomerDTO;
 import service.customer.api.entity.CustomerEntity;
 import service.customer.api.repository.CustomerRepository;
 import service.customer.api.request.AddressesRequestModel;
-import service.customer.api.request.ContactPersonRequestModel;
+import service.customer.api.request.ContactPersonesRequestModel;
 import service.customer.api.request.CustomerRequestModel;
 import service.customer.api.response.CustomerResponseModel;
 
@@ -40,6 +40,7 @@ public class CustomerServiceImpl implements CustomerService {
 	CityService cityService;
 	
 /**************************************************************************************************************************/
+	
 	// Create New Customer
 	@Override
 	public CustomerResponseModel createCustomer(CustomerRequestModel customer) {
@@ -65,7 +66,7 @@ public class CustomerServiceImpl implements CustomerService {
 		//Get Customer Contact Persons and add to Customer Info
 				for (int i = 0; i < customer.getContactPersones().size(); i++) {
 					
-					ContactPersonRequestModel contactPersones = customer.getContactPersones().get(i);
+					ContactPersonesRequestModel contactPersones = customer.getContactPersones().get(i);
 					ContactPersonesDTO contactPersonDTO = new ContactPersonesDTO();
 					BeanUtils.copyProperties(contactPersones, contactPersonDTO);
 					contactPersonDTO.setCustomer(customerDTO);
@@ -116,6 +117,19 @@ public class CustomerServiceImpl implements CustomerService {
 		return returnValue;
 	}
 	
+/*****************************************************************************************************************************/
+
+	//Get Customer by public id and return DTO for internal use	
+	@Override
+	public CustomerDTO getCustomerByPublicId(String publicId) {
+		CustomerEntity customerEntity = customerRepository.findByPublicId(publicId);
+		if(customerEntity == null || customerEntity.getDeleted() == true) throw new RuntimeException(publicId);
+		Gson gson = new Gson();
+		String temp = gson.toJson(customerEntity);
+		CustomerDTO returnValue = gson.fromJson(temp, CustomerDTO.class);
+		return returnValue;
+	}
+			
 /**************************************************************************************************************************/
 
 }

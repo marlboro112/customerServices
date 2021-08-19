@@ -7,5 +7,8 @@ import service.customer.api.entity.ContactPersonesEntity;
 
 @Repository
 public interface ContactPersonesRepository extends JpaRepository<ContactPersonesEntity, Long> {
+	
+	ContactPersonesEntity findByPublicId (String publicId);
+	
 
 }

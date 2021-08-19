@@ -14,6 +14,7 @@ public class AddressesRequestModel {
 	private String cityPublicId;
 	private String countryPublicId;
 	private String typePublicId;
+	private String customerPublicId;
 	private String description;
 	private String logedInUserPublicId;
 	
@@ -58,6 +59,12 @@ public class AddressesRequestModel {
 	}
 	public void setLogedInUserPublicId(String logedInUserPublicId) {
 		this.logedInUserPublicId = logedInUserPublicId;
+	}
+	public String getCustomerPublicId() {
+		return customerPublicId;
+	}
+	public void setCustomerPublicId(String customerPublicId) {
+		this.customerPublicId = customerPublicId;
 	}
 	
 	

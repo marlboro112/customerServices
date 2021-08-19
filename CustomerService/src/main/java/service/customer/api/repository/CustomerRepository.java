@@ -8,6 +8,7 @@ import service.customer.api.entity.CustomerEntity;
 @Repository
 public interface CustomerRepository extends JpaRepository<CustomerEntity, Long> {
 
+	CustomerEntity findByPublicId (String piblicId);
 	CustomerEntity findByCustomerName(String customerName);
 
 }

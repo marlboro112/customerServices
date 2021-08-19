@@ -17,6 +17,7 @@ public class AddressesResponseModel {
 	private String typeName;
 	private String city;
 	private String country;
+	private String customerName;
 	
 	
 	public String getPublicId() {
@@ -60,6 +61,12 @@ public class AddressesResponseModel {
 	}
 	public void setCountry(String country) {
 		this.country = country;
+	}
+	public String getCustomerName() {
+		return customerName;
+	}
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
 	
 	
