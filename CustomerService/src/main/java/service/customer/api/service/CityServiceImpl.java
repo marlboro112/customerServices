@@ -62,8 +62,12 @@ public class CityServiceImpl implements CityService {
 		CityEntity savedCityEntity = cityRepository.save(cityEntity);
 		temp = gson.toJson(savedCityEntity);
 		CityDTO savedCityDTO = gson.fromJson(temp, CityDTO.class);
-		temp = gson.toJson(savedCityDTO);
-		CityResponseModel returnValue = gson.fromJson(temp, CityResponseModel.class);		
+		CityResponseModel returnValue = new CityResponseModel();
+		returnValue.setCityName(savedCityDTO.getCityName());
+		returnValue.setCountryName(savedCityDTO.getCountry().getCountryName());
+		returnValue.setDescription(savedCityDTO.getDescription());
+		returnValue.setEnabled(savedCityDTO.getEnabled());
+		returnValue.setPublicId(savedCityDTO.getPublicId());
 		return returnValue;
 		
 	}

@@ -1,5 +1,8 @@
 package service.customer.api.service;
 
+import java.util.Date;
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,6 +11,8 @@ import com.google.gson.Gson;
 import service.customer.api.dto.AddressesTypeDTO;
 import service.customer.api.entity.AddressesTypeEntity;
 import service.customer.api.repository.AddressesTypeRepository;
+import service.customer.api.request.AddressesTypeRequestModel;
+import service.customer.api.response.AddressesTypeResponseModel;
 
 @Service
 public class AddressesTypeServiceImpl implements AddressesTypeService {
@@ -31,6 +36,43 @@ public class AddressesTypeServiceImpl implements AddressesTypeService {
 	
 /****************************************************************************************************************************/
 
+	// Add new Address Type to Database
+	public AddressesTypeResponseModel addAddressesType (AddressesTypeRequestModel type) {
+		AddressesTypeEntity checkStoredAddressesTypeEntity = addressesTypeRepositroy.findAddressesTypeByName(type.getName());
+		if (checkStoredAddressesTypeEntity != null) throw new RuntimeException(type.getName());
+		AddressesTypeDTO addressesTypeDTO = new AddressesTypeDTO();
+		Gson gson = new Gson();
+		Date currentDate = new Date();
+		
+		addressesTypeDTO.setPublicId(UUID.randomUUID().toString());
+		addressesTypeDTO.setDescription(type.getDescription());
+		addressesTypeDTO.setCreatedBy(type.getLogedInUserPublicId());
+		addressesTypeDTO.setCreated(currentDate);
+		addressesTypeDTO.setModifiedBy(type.getLogedInUserPublicId());
+		addressesTypeDTO.setModified(currentDate);
+		addressesTypeDTO.setDeleted(false);
+		addressesTypeDTO.setDeletedBy("Not Deleted Yet");
+		addressesTypeDTO.setEnabled(true);
+		addressesTypeDTO.setName(type.getName());
+		
+		String temp = gson.toJson(addressesTypeDTO);
+		AddressesTypeEntity addressesTpeEntity = gson.fromJson(temp, AddressesTypeEntity.class);
+		AddressesTypeEntity savedAddressesTpeEntity = addressesTypeRepositroy.save(addressesTpeEntity);
+		temp = gson.toJson(savedAddressesTpeEntity);
+		AddressesTypeDTO savedAddressesTypeDTO = gson.fromJson(temp, AddressesTypeDTO.class);
+		
+		AddressesTypeResponseModel returnValue = new AddressesTypeResponseModel();
+		returnValue.setName(savedAddressesTypeDTO.getName());
+		returnValue.setDescription(savedAddressesTypeDTO.getDescription());
+		returnValue.setEnabled(savedAddressesTypeDTO.getEnabled());
+		returnValue.setPublicId(savedAddressesTypeDTO.getPublicId());
+		
+		return returnValue;	
+		
+	}
+	
+/*********************************************************************************************************************************/
+	
 	
 
 }

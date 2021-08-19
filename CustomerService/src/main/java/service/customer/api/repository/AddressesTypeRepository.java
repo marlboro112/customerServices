@@ -9,5 +9,6 @@ import service.customer.api.entity.AddressesTypeEntity;
 public interface AddressesTypeRepository extends JpaRepository<AddressesTypeEntity, Long> {
 	
 	AddressesTypeEntity findAddressesTypeByPublicId (String publicId);
+	AddressesTypeEntity findAddressesTypeByName (String type);
 
 }

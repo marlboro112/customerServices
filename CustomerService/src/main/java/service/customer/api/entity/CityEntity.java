@@ -3,7 +3,8 @@ package service.customer.api.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -22,8 +23,10 @@ public class CityEntity extends BaseEntity {
 	@Column(name = "cityName", length = 250, nullable = false, unique = true)
 	private String cityName;
 
-	@ManyToOne
-	@JoinColumn(name = "country_id")
+	@OneToOne
+	@JoinTable(name = "city_country",
+				joinColumns = {@JoinColumn(name = "city_id", referencedColumnName = "id")},
+				inverseJoinColumns = {@JoinColumn(name = "country_id", referencedColumnName = "id")})
 	private CountryEntity country;
 
 	public String getCityName() {

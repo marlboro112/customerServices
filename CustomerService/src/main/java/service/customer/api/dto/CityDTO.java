@@ -9,7 +9,6 @@ public class CityDTO extends BaseDTO {
 	
 	private String cityName;
 	private CountryDTO country;
-	private AddressesDTO addresses;
 	
 	public String getCityName() {
 		return cityName;
@@ -22,12 +21,6 @@ public class CityDTO extends BaseDTO {
 	}
 	public void setCountry(CountryDTO country) {
 		this.country = country;
-	}
-	public AddressesDTO getAddresses() {
-		return addresses;
-	}
-	public void setAddresses(AddressesDTO addresses) {
-		this.addresses = addresses;
 	}
 	
 	

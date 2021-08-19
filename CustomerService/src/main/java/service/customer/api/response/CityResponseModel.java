@@ -1,13 +1,9 @@
 package service.customer.api.response;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import org.springframework.stereotype.Component;
 
-@AllArgsConstructor
-@EqualsAndHashCode
-@ToString
-public class CityResponseModel {
+@Component
+public class CityResponseModel  {
 	
 	private String publicId;
 	private String cityName;
