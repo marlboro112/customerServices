@@ -38,7 +38,7 @@ public class AddressesTypeServiceImpl implements AddressesTypeService {
 
 	// Add new Address Type to Database
 	public AddressesTypeResponseModel addAddressesType (AddressesTypeRequestModel type) {
-		AddressesTypeEntity checkStoredAddressesTypeEntity = addressesTypeRepository.finByName(type.getName());
+		AddressesTypeEntity checkStoredAddressesTypeEntity = addressesTypeRepository.findByName(type.getName());
 		if (checkStoredAddressesTypeEntity != null) throw new RuntimeException(type.getName());
 		AddressesTypeDTO addressesTypeDTO = new AddressesTypeDTO();
 		Gson gson = new Gson();

@@ -65,8 +65,7 @@ public class AddressesServiceImpl implements AddressesService {
 		addressesDTO.setStreetName(addresses.getStreetName());
 		addressesDTO.setCity(cityService.getCityByPublicId(addresses.getCityPublicId()));
 		addressesDTO.setCountry(countryService.getCountryByPublicId(addresses.getCountryPublicId()));
-		addressesDTO.setType(addressesTypeService.getAddressTypeByPublicId(addresses.getTypePublicId()));
-		addressesDTO.setCustomer(customerService.getCustomerByPublicId(addresses.getCustomerPublicId()));		
+		addressesDTO.setType(addressesTypeService.getAddressTypeByPublicId(addresses.getTypePublicId()));		
 		
 		String temp = gson.toJson(addressesDTO);
 		AddressesEntity addressesEntity = gson.fromJson(temp, AddressesEntity.class);

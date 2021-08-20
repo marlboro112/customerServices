@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,7 +50,7 @@ public class CustomerServiceImpl implements CustomerService {
 		List<ContactPersonesDTO> contactPersonDTOS = new ArrayList<ContactPersonesDTO>();
 		List<AddressesDTO> addressesDTOS = new ArrayList<AddressesDTO>();
 		Date currentData = new Date();
-		Gson gson = new Gson();
+		ModelMapper modelMapper = new ModelMapper();
 		CustomerEntity checkStoredCustomer  = customerRepository.findByCustomerName(customer.getCustomerName());
 		if(checkStoredCustomer != null) throw new RuntimeException("Customer already availbale");
 		
@@ -59,6 +60,7 @@ public class CustomerServiceImpl implements CustomerService {
 		customerDTO.setModified(currentData);
 		customerDTO.setModifiedBy(customer.getLogedInUserPublicId());
 		customerDTO.setDeleted(false);
+		customerDTO.setDeletedBy("Not Deleted Yet");
 		customerDTO.setEnabled(true);
 		customerDTO.setCustomerName(customer.getCustomerName());
 		customerDTO.setDescription(customer.getDescription());
@@ -76,6 +78,7 @@ public class CustomerServiceImpl implements CustomerService {
 					contactPersonDTO.setModified(currentData);
 					contactPersonDTO.setModifiedBy(customer.getLogedInUserPublicId());
 					contactPersonDTO.setDeleted(false);
+					contactPersonDTO.setDeletedBy("Not Deleted Yet");
 					contactPersonDTO.setEnabled(true);
 					contactPersonDTOS.add(i, contactPersonDTO);
 				}
@@ -93,6 +96,7 @@ public class CustomerServiceImpl implements CustomerService {
 					addressesDTO.setModified(currentData);
 					addressesDTO.setModifiedBy(customer.getLogedInUserPublicId());
 					addressesDTO.setDeleted(false);
+					addressesDTO.setDeletedBy("Not Deleted Yet");
 					addressesDTO.setEnabled(true);
 					AddressesTypeDTO addressTypeDTO = addressesTypeService.getAddressTypeByPublicId(address.getTypePublicId());
 					addressesDTO.setType(addressTypeDTO);
@@ -107,12 +111,15 @@ public class CustomerServiceImpl implements CustomerService {
 		customerDTO.setAddresses(addressesDTOS);
 		customerDTO.setContactPersones(contactPersonDTOS);
 		
-		String temp = gson.toJson(customerDTO);
-		CustomerEntity customerEntity = gson.fromJson(temp,CustomerEntity.class);
-		customerRepository.save(customerEntity);
 		
-		temp = gson.toJson(customerEntity);
-		CustomerResponseModel returnValue = gson.fromJson(temp, CustomerResponseModel.class);
+		CustomerEntity customerEntity = modelMapper.map(customerDTO, CustomerEntity.class);
+		
+		//String temp = gson.toJson(customerDTO);
+		//CustomerEntity customerEntity = gson.fromJson(temp,CustomerEntity.class);
+		CustomerEntity savedCustomerEntity = customerRepository.save(customerEntity);
+		CustomerDTO savedCustomerDTO = modelMapper.map(savedCustomerEntity, CustomerDTO.class);
+		//temp = gson.toJson(customerEntity);
+		CustomerResponseModel returnValue = modelMapper.map(savedCustomerDTO, CustomerResponseModel.class);
 		
 		return returnValue;
 	}

@@ -7,7 +7,7 @@ public class CustomerRequestModel {
 	
 	private String customerName;
 	private String description;
-	private String LogedInUserPublicId;
+	private String logedInUserPublicId;
 	private List<AddressesRequestModel> addresses;
 	private List<ContactPersonesRequestModel> contactPersones;
 	
@@ -23,12 +23,6 @@ public class CustomerRequestModel {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getLogedInUserPublicId() {
-		return LogedInUserPublicId;
-	}
-	public void setLogedInUserPublicId(String logedInUserPublicId) {
-		LogedInUserPublicId = logedInUserPublicId;
-	}
 	public List<AddressesRequestModel> getAddresses() {
 		return addresses;
 	}
@@ -40,6 +34,12 @@ public class CustomerRequestModel {
 	}
 	public void setContactPersones(List<ContactPersonesRequestModel> contactPersones) {
 		this.contactPersones = contactPersones;
+	}
+	public String getLogedInUserPublicId() {
+		return logedInUserPublicId;
+	}
+	public void setLogedInUserPublicId(String logedInUserPublicId) {
+		this.logedInUserPublicId = logedInUserPublicId;
 	}
 	
 	

@@ -21,8 +21,7 @@ public class AddressesTypeController {
 /*******************************************************************************************************************/
 	// Add new Address Type
 	@PostMapping(path ="/add", consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE, 
-			MediaType.APPLICATION_XML_VALUE })
-	
+			MediaType.APPLICATION_XML_VALUE })	
 	public AddressesTypeResponseModel addAddressesType (@RequestBody AddressesTypeRequestModel type) {
 		AddressesTypeResponseModel returnValue = addressesTypeService.addAddressesType(type);
 		return returnValue;		

@@ -56,6 +56,12 @@
 			<groupId>com.fasterxml.jackson.dataformat</groupId>
 			<artifactId>jackson-dataformat-xml</artifactId>
 		</dependency>	
+		<!-- http://modelmapper.org/getting-started/ -->
+		<dependency>
+		  <groupId>org.modelmapper</groupId>
+		  <artifactId>modelmapper</artifactId>
+		  <version>2.4.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>
