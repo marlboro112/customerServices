@@ -10,8 +10,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.google.gson.Gson;
-
 import service.customer.api.dto.AddressesDTO;
 import service.customer.api.dto.AddressesTypeDTO;
 import service.customer.api.dto.CityDTO;
@@ -23,6 +21,7 @@ import service.customer.api.repository.CustomerRepository;
 import service.customer.api.request.AddressesRequestModel;
 import service.customer.api.request.ContactPersonesRequestModel;
 import service.customer.api.request.CustomerRequestModel;
+import service.customer.api.response.CustomerDetailsResponseModel;
 import service.customer.api.response.CustomerResponseModel;
 
 @Service
@@ -114,11 +113,10 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		CustomerEntity customerEntity = modelMapper.map(customerDTO, CustomerEntity.class);
 		
-		//String temp = gson.toJson(customerDTO);
-		//CustomerEntity customerEntity = gson.fromJson(temp,CustomerEntity.class);
+
 		CustomerEntity savedCustomerEntity = customerRepository.save(customerEntity);
 		CustomerDTO savedCustomerDTO = modelMapper.map(savedCustomerEntity, CustomerDTO.class);
-		//temp = gson.toJson(customerEntity);
+
 		CustomerResponseModel returnValue = modelMapper.map(savedCustomerDTO, CustomerResponseModel.class);
 		
 		return returnValue;
@@ -129,14 +127,26 @@ public class CustomerServiceImpl implements CustomerService {
 	//Get Customer by public id and return DTO for internal use	
 	@Override
 	public CustomerDTO getCustomerByPublicId(String publicId) {
+		ModelMapper modelMapper = new ModelMapper();
 		CustomerEntity customerEntity = customerRepository.findByPublicId(publicId);
 		if(customerEntity == null || customerEntity.getDeleted() == true) throw new RuntimeException(publicId);
-		Gson gson = new Gson();
-		String temp = gson.toJson(customerEntity);
-		CustomerDTO returnValue = gson.fromJson(temp, CustomerDTO.class);
+		CustomerDTO returnValue = modelMapper.map(customerEntity, CustomerDTO.class);
+		return returnValue;
+	}
+
+/**************************************************************************************************************************/
+
+	@Override
+	public CustomerDetailsResponseModel findCustomerByPublicId(String publicId) {
+		ModelMapper modelMapper = new ModelMapper();
+		CustomerDTO customerDTO = getCustomerByPublicId(publicId);
+		if(customerDTO == null || customerDTO.getDeleted() == true) throw new RuntimeException(publicId);
+		CustomerDetailsResponseModel returnValue = modelMapper.map(customerDTO, CustomerDetailsResponseModel.class);
 		return returnValue;
 	}
 			
 /**************************************************************************************************************************/
+	
+	
 
 }
