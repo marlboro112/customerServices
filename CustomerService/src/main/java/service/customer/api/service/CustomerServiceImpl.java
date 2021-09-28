@@ -21,6 +21,7 @@ import service.customer.api.repository.CustomerRepository;
 import service.customer.api.request.AddressesRequestModel;
 import service.customer.api.request.ContactPersonesRequestModel;
 import service.customer.api.request.CustomerRequestModel;
+import service.customer.api.request.CustomerUpdateRequestModel;
 import service.customer.api.response.CustomerDetailsResponseModel;
 import service.customer.api.response.CustomerResponseModel;
 
@@ -129,13 +130,14 @@ public class CustomerServiceImpl implements CustomerService {
 	public CustomerDTO getCustomerByPublicId(String publicId) {
 		ModelMapper modelMapper = new ModelMapper();
 		CustomerEntity customerEntity = customerRepository.findByPublicId(publicId);
-		if(customerEntity == null || customerEntity.getDeleted() == true) throw new RuntimeException(publicId);
+		if(customerEntity == null) throw new RuntimeException(publicId);
 		CustomerDTO returnValue = modelMapper.map(customerEntity, CustomerDTO.class);
 		return returnValue;
 	}
 
 /**************************************************************************************************************************/
 
+	// Find Customer by Public ID
 	@Override
 	public CustomerDetailsResponseModel findCustomerByPublicId(String publicId) {
 		ModelMapper modelMapper = new ModelMapper();
@@ -147,6 +149,26 @@ public class CustomerServiceImpl implements CustomerService {
 			
 /**************************************************************************************************************************/
 	
+	// Update Customer
+	@Override
+	public CustomerResponseModel updateCustomer (CustomerUpdateRequestModel customer, String publicId) {
+		Date currentData = new Date();
+		ModelMapper modelMapper = new ModelMapper();
+		CustomerDTO customerDTO = getCustomerByPublicId(publicId);
+		BeanUtils.copyProperties(customer, customerDTO);
+		customerDTO.setModified(currentData);
+		customerDTO.setModifiedBy(customer.getLogedInUserPublicId());
+		
+		CustomerEntity customerEntity = modelMapper.map(customerDTO, CustomerEntity.class);		
+		CustomerEntity savedCustomerEntity = customerRepository.save(customerEntity);
+		
+		CustomerDTO savedCustomerDTO = modelMapper.map(savedCustomerEntity, CustomerDTO.class);
+		
+		CustomerResponseModel returnValue = modelMapper.map(savedCustomerDTO, CustomerResponseModel.class);		
+		
+		return returnValue;
+	}
 	
+/*************************************************************************************************************************/
 
 }
