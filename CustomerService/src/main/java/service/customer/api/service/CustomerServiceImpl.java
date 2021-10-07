@@ -168,7 +168,27 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		return returnValue;
 	}
+
 	
 /*************************************************************************************************************************/
 
+	@Override
+	public List<CustomerResponseModel> getCustomerList() {
+		Iterable<CustomerEntity> customerEntitys = customerRepository.findAllActiveCustomers();
+		List<CustomerDTO> customerDTOs = new ArrayList<CustomerDTO>();
+		List<CustomerResponseModel> returnValue = new ArrayList<CustomerResponseModel>();
+		ModelMapper modelMapper = new ModelMapper();
+		for(CustomerEntity customerEntity : customerEntitys) {
+			CustomerDTO customerDTO = new CustomerDTO();
+			customerDTO = modelMapper.map(customerEntity, CustomerDTO.class);
+			customerDTOs.add(customerDTO);
+		}		
+		for(CustomerDTO customerDTO : customerDTOs) {
+			CustomerResponseModel customer = new CustomerResponseModel();
+			customer = modelMapper.map(customerDTO, CustomerResponseModel.class);
+			returnValue.add(customer);
+		}
+		
+		return returnValue;
+	}
 }

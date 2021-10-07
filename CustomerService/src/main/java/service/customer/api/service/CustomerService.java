@@ -1,5 +1,7 @@
 package service.customer.api.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import service.customer.api.dto.CustomerDTO;
@@ -22,5 +24,8 @@ public interface CustomerService {
 	
 	//Update Customer
 	CustomerResponseModel updateCustomer (CustomerUpdateRequestModel customer, String publicId);
+	
+	// Get customer list
+	List<CustomerResponseModel> getCustomerList();
 
 }
