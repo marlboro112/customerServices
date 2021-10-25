@@ -8,6 +8,7 @@ import java.util.UUID;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import service.customer.api.dto.AddressesDTO;
@@ -171,7 +172,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	
 /*************************************************************************************************************************/
-
+    // Get Active Customer List
 	@Override
 	public List<CustomerResponseModel> getCustomerList() {
 		Iterable<CustomerEntity> customerEntitys = customerRepository.findAllActiveCustomers();
@@ -191,4 +192,14 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		return returnValue;
 	}
+
+/******************************************************************************************************************************/
+	// Delete Customer by pubicId
+	@Override
+	public HttpStatus deleteCustomer(String publicId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
 }
