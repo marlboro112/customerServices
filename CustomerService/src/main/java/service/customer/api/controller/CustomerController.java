@@ -3,7 +3,6 @@ package service.customer.api.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +17,7 @@ import service.customer.api.request.CustomerRequestModel;
 import service.customer.api.request.CustomerUpdateRequestModel;
 import service.customer.api.response.CustomerDetailsResponseModel;
 import service.customer.api.response.CustomerResponseModel;
+import service.customer.api.response.SuperUserCustomerResponseModel;
 import service.customer.api.service.CustomerService;
 
 @RestController
@@ -68,16 +68,22 @@ public class CustomerController {
 	}
 	
 /***********************************************************************************************************************/
-	//TODO: Delete Customer by publicId
-	@DeleteMapping(path = "/{publicId}", consumes = { MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE })
-	public HttpStatus deleteCustomer(@PathVariable String publicId) {
-		HttpStatus returnValue = customerService.deleteCustomer(publicId);
+	// Delete Customer by publicId. If delete was success returnValue=true, otherwise returnValue=false 
+	@DeleteMapping(path = "/{publicId}/{logedInUserPublicId}", consumes = { MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE })
+	public Boolean deleteCustomer(@PathVariable("publicId") String publicId,@PathVariable("logedInUserPublicId") String logedInUserPublicId) {
+		Boolean returnValue = customerService.deleteCustomer(publicId,logedInUserPublicId);
 		
 		return returnValue;
 	}
 	
 /***********************************************************************************************************************/
-	//TODO: Disable Customer by publicId
+	// Disable Customer by publicId. If delete was success returnValue=true, otherwise returnValue=false 
+	@GetMapping(path = "/{publicId}/{logedInUserPublicId}", consumes = { MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE })
+	public Boolean disableCustomer(@PathVariable("publicId") String publicId,@PathVariable("logedInUserPublicId") String logedInUserPublicId) {
+		Boolean returnValue = customerService.disableCustomer(publicId,logedInUserPublicId);
+		
+		return returnValue;
+	}
 	
 /***********************************************************************************************************************/
 	//TODO: Add address to  Customer by publicId
@@ -86,6 +92,11 @@ public class CustomerController {
 	//TODO: Add Contact Person to  Customer by publicId
 	
 /***********************************************************************************************************************/
-	//TODO: Get all Customer list for SuperUser
-	
+	// Get all Customer list for SuperUser
+	@GetMapping(path ="/superuser",consumes = { MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE })
+	public List<SuperUserCustomerResponseModel> getAllCustomerList(){
+		List<SuperUserCustomerResponseModel> returnValue = customerService.getAllCustomerList();
+		
+		return returnValue;
+	}
 }

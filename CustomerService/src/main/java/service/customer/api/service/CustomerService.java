@@ -2,7 +2,6 @@ package service.customer.api.service;
 
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import service.customer.api.dto.CustomerDTO;
@@ -10,6 +9,7 @@ import service.customer.api.request.CustomerRequestModel;
 import service.customer.api.request.CustomerUpdateRequestModel;
 import service.customer.api.response.CustomerDetailsResponseModel;
 import service.customer.api.response.CustomerResponseModel;
+import service.customer.api.response.SuperUserCustomerResponseModel;
 
 @Service
 public interface CustomerService {
@@ -26,10 +26,16 @@ public interface CustomerService {
 	//Update Customer
 	CustomerResponseModel updateCustomer (CustomerUpdateRequestModel customer, String publicId);
 	
-	// Get customer list
+	// Get Active customer list
 	List<CustomerResponseModel> getCustomerList();
 	
 	//Delete Customer by publicId
-	HttpStatus deleteCustomer(String publicId);
+	Boolean deleteCustomer(String publicId,String logedInUserPublicId);
+	
+	//Disable Customer by publicId
+	Boolean disableCustomer(String publicId,String logedInUserPublicId);
+	
+	//Get All Customer list for SuperUser
+	List<SuperUserCustomerResponseModel> getAllCustomerList();
 
 }

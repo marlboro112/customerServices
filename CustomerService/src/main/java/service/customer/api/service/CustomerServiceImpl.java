@@ -8,7 +8,6 @@ import java.util.UUID;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import service.customer.api.dto.AddressesDTO;
@@ -25,6 +24,7 @@ import service.customer.api.request.CustomerRequestModel;
 import service.customer.api.request.CustomerUpdateRequestModel;
 import service.customer.api.response.CustomerDetailsResponseModel;
 import service.customer.api.response.CustomerResponseModel;
+import service.customer.api.response.SuperUserCustomerResponseModel;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -196,10 +196,66 @@ public class CustomerServiceImpl implements CustomerService {
 /******************************************************************************************************************************/
 	// Delete Customer by pubicId
 	@Override
-	public HttpStatus deleteCustomer(String publicId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Boolean deleteCustomer(String publicId, String logedInUserPublicId) {
+		try {
+			Date currentData = new Date();
+			ModelMapper modelMapper = new ModelMapper();
+			CustomerDTO customerDTO = getCustomerByPublicId(publicId);
+			customerDTO.setModified(currentData);
+			customerDTO.setModifiedBy(logedInUserPublicId);
+			customerDTO.setDeleted(true);
+			customerDTO.setDeletedBy(logedInUserPublicId);
+			CustomerEntity customerEntity = modelMapper.map(customerDTO, CustomerEntity.class);		
+			customerRepository.save(customerEntity);
+			
+		} catch (Exception e) {
+			return false;
+		}
+		
+		return true;
+	}
+
+	
+/********************************************************************************************************************************/
+	// Disable Customer by publicId
+	@Override
+	public Boolean disableCustomer(String publicId, String logedInUserPublicId) {
+		try {
+			Date currentData = new Date();
+			ModelMapper modelMapper = new ModelMapper();
+			CustomerDTO customerDTO = getCustomerByPublicId(publicId);
+			customerDTO.setModified(currentData);
+			customerDTO.setModifiedBy(logedInUserPublicId);
+			customerDTO.setEnabled(false);
+			CustomerEntity customerEntity = modelMapper.map(customerDTO, CustomerEntity.class);		
+			customerRepository.save(customerEntity);
+			
+		} catch (Exception e) {
+			return false;
+		}
+		
+		return true;
 	}
 	
-	
+/**********************************************************************************************************************************/
+	// Get All CustomerList for SuperUser
+	@Override
+	public List<SuperUserCustomerResponseModel> getAllCustomerList() {
+		Iterable<CustomerEntity> customerEntitys = customerRepository.findAll();
+		List<CustomerDTO> customerDTOs = new ArrayList<CustomerDTO>();
+		List<SuperUserCustomerResponseModel> returnValue = new ArrayList<SuperUserCustomerResponseModel>();
+		ModelMapper modelMapper = new ModelMapper();
+		for(CustomerEntity customerEntity : customerEntitys) {
+			CustomerDTO customerDTO = new CustomerDTO();
+			customerDTO = modelMapper.map(customerEntity, CustomerDTO.class);
+			customerDTOs.add(customerDTO);
+		}		
+		for(CustomerDTO customerDTO : customerDTOs) {
+			SuperUserCustomerResponseModel customer = new SuperUserCustomerResponseModel();
+			customer = modelMapper.map(customerDTO, SuperUserCustomerResponseModel.class);
+			returnValue.add(customer);
+		}
+		
+		return returnValue;
+	}
 }
