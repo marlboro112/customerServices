@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import service.customer.api.request.AddAddressToCustomerRequestModel;
+import service.customer.api.request.AddContactPersonsToCustomerRequestModel;
 import service.customer.api.request.CustomerRequestModel;
 import service.customer.api.request.CustomerUpdateRequestModel;
 import service.customer.api.response.CustomerDetailsResponseModel;
@@ -96,8 +97,13 @@ public class CustomerController {
 	}
 	
 /***********************************************************************************************************************/
-	//TODO: Add Contact Person to  Customer by publicId
-	
+	//Add Contact Person to  Customer by publicId
+	@PutMapping(path ="/addcontactpersonestocustomer", consumes = { MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE })
+	public CustomerDetailsResponseModel addContactPersonesToCustomer(@RequestBody AddContactPersonsToCustomerRequestModel contactPersons) {
+		CustomerDetailsResponseModel returnValue = customerService.addContactPersonsToCutsomerByPublicId(contactPersons);
+		
+		return returnValue;
+	}
 /***********************************************************************************************************************/
 	// Get all Customer list for SuperUser
 	@GetMapping(path ="/superuser",consumes = { MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE })

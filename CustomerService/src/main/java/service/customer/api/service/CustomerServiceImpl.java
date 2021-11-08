@@ -19,6 +19,7 @@ import service.customer.api.dto.CustomerDTO;
 import service.customer.api.entity.CustomerEntity;
 import service.customer.api.repository.CustomerRepository;
 import service.customer.api.request.AddAddressToCustomerRequestModel;
+import service.customer.api.request.AddContactPersonsToCustomerRequestModel;
 import service.customer.api.request.AddressesRequestModel;
 import service.customer.api.request.ContactPersonesRequestModel;
 import service.customer.api.request.CustomerRequestModel;
@@ -292,18 +293,56 @@ public class CustomerServiceImpl implements CustomerService {
 
 		}		
 		customerDTO.setAddresses(addressesDTOS);
-		CustomerEntity customerEntity = customerRepository.findByPublicId(addresses.getCustomerPublicId());
-		customerEntity = modelMapper.map(customerDTO, CustomerEntity.class);
+        CustomerEntity customerEntity = modelMapper.map(customerDTO, CustomerEntity.class);
 		
 
-		customerRepository.save(customerEntity);
-		CustomerDTO savedCustomerDTO = getCustomerByPublicId(addresses.getCustomerPublicId());
+		CustomerEntity savedCustomerEntity = customerRepository.save(customerEntity);
+		CustomerDTO savedCustomerDTO = modelMapper.map(savedCustomerEntity, CustomerDTO.class);
 
 		CustomerDetailsResponseModel returnValue = modelMapper.map(savedCustomerDTO, CustomerDetailsResponseModel.class);
 		
 		return returnValue;
 
 	}
+	
+/***************************************************************************************************************************************/
+	//Add new contact persons to customer by publicId
+	@Override
+	public CustomerDetailsResponseModel addContactPersonsToCutsomerByPublicId(AddContactPersonsToCustomerRequestModel contactPersones) {
+
+		CustomerDTO customerDTO = getCustomerByPublicId(contactPersones.getCustomerPublicId());
+		List<ContactPersonesDTO> contactPersonDTOS = new ArrayList<ContactPersonesDTO>();
+		Date currentData = new Date();
+		ModelMapper modelMapper = new ModelMapper();
+		for (int i = 0; i < contactPersones.getContactPersons().size(); i++) {
+			
+			ContactPersonesRequestModel contactPerson = contactPersones.getContactPersons().get(i);
+			ContactPersonesDTO contactPersonDTO = new ContactPersonesDTO();
+			BeanUtils.copyProperties(contactPerson, contactPersonDTO);
+			contactPersonDTO.setCustomer(customerDTO);
+			contactPersonDTO.setPublicId(UUID.randomUUID().toString());
+			contactPersonDTO.setCreated(currentData);
+			contactPersonDTO.setCreatedBy(contactPerson.getLogedInUserPublicId());
+			contactPersonDTO.setModified(currentData);
+			contactPersonDTO.setModifiedBy(contactPerson.getLogedInUserPublicId());
+			contactPersonDTO.setDeleted(false);
+			contactPersonDTO.setDeletedBy("Not Deleted Yet");
+			contactPersonDTO.setEnabled(true);
+			contactPersonDTOS.add(i, contactPersonDTO);
+		}
+		customerDTO.setContactPersones(contactPersonDTOS);
 		
+        CustomerEntity customerEntity = modelMapper.map(customerDTO, CustomerEntity.class);
+		
+
+		CustomerEntity savedCustomerEntity = customerRepository.save(customerEntity);
+		CustomerDTO savedCustomerDTO = modelMapper.map(savedCustomerEntity, CustomerDTO.class);
+
+		CustomerDetailsResponseModel returnValue = modelMapper.map(savedCustomerDTO, CustomerDetailsResponseModel.class);
+		
+		return returnValue;
+	}
+		
+	
 	
 }

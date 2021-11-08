@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import service.customer.api.dto.CustomerDTO;
 import service.customer.api.request.AddAddressToCustomerRequestModel;
+import service.customer.api.request.AddContactPersonsToCustomerRequestModel;
 import service.customer.api.request.CustomerRequestModel;
 import service.customer.api.request.CustomerUpdateRequestModel;
 import service.customer.api.response.CustomerDetailsResponseModel;
@@ -41,5 +42,8 @@ public interface CustomerService {
 	
 	// Add new address to Customer by pubicId
 	CustomerDetailsResponseModel addAddressToCutsomerByPublicId(AddAddressToCustomerRequestModel addresses);
+	
+	// Add new contact persons to Customer by publicId
+	CustomerDetailsResponseModel addContactPersonsToCutsomerByPublicId(AddContactPersonsToCustomerRequestModel contactPersones);
 
 }
