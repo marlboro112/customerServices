@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
 
@@ -13,6 +14,7 @@ import service.customer.api.repository.AddressesRepository;
 import service.customer.api.request.AddressesRequestModel;
 import service.customer.api.response.AddressesResponseModel;
 
+@Service
 public class AddressesServiceImpl implements AddressesService {
 
 	@Autowired

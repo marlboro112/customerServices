@@ -18,6 +18,7 @@ import service.customer.api.dto.CountryDTO;
 import service.customer.api.dto.CustomerDTO;
 import service.customer.api.entity.CustomerEntity;
 import service.customer.api.repository.CustomerRepository;
+import service.customer.api.request.AddAddressToCustomerRequestModel;
 import service.customer.api.request.AddressesRequestModel;
 import service.customer.api.request.ContactPersonesRequestModel;
 import service.customer.api.request.CustomerRequestModel;
@@ -258,4 +259,51 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		return returnValue;
 	}
+
+/**********************************************************************************************************************************/
+	// Add new address to customer by publicId
+	@Override
+	public CustomerDetailsResponseModel addAddressToCutsomerByPublicId(AddAddressToCustomerRequestModel addresses) {
+		CustomerDTO customerDTO = getCustomerByPublicId(addresses.getCustomerPublicId());
+		List<AddressesDTO> addressesDTOS = new ArrayList<AddressesDTO>();
+		Date currentData = new Date();
+		ModelMapper modelMapper = new ModelMapper();
+		for (int i = 0; i < addresses.getAddresses().size(); i++) {
+			
+			AddressesRequestModel address = addresses.getAddresses().get(i);
+			AddressesDTO addressesDTO = new AddressesDTO();
+			BeanUtils.copyProperties(address, addressesDTO);
+			addressesDTO.setCustomer(customerDTO);
+			addressesDTO.setPublicId(UUID.randomUUID().toString());
+			addressesDTO.setCreated(currentData);
+			addressesDTO.setCreatedBy(address.getLogedInUserPublicId());
+			addressesDTO.setModified(currentData);
+			addressesDTO.setModifiedBy(address.getLogedInUserPublicId());
+			addressesDTO.setDeleted(false);
+			addressesDTO.setDeletedBy("Not Deleted Yet");
+			addressesDTO.setEnabled(true);
+			AddressesTypeDTO addressTypeDTO = addressesTypeService.getAddressTypeByPublicId(address.getTypePublicId());
+			addressesDTO.setType(addressTypeDTO);
+			CityDTO cityDTO = cityService.getCityByPublicId(address.getCityPublicId());
+			addressesDTO.setCity(cityDTO);
+			CountryDTO countryDTO = countryService.getCountryByPublicId(address.getCountryPublicId());
+			addressesDTO.setCountry(countryDTO);
+			addressesDTOS.add(i, addressesDTO);
+
+		}		
+		customerDTO.setAddresses(addressesDTOS);
+		CustomerEntity customerEntity = customerRepository.findByPublicId(addresses.getCustomerPublicId());
+		customerEntity = modelMapper.map(customerDTO, CustomerEntity.class);
+		
+
+		customerRepository.save(customerEntity);
+		CustomerDTO savedCustomerDTO = getCustomerByPublicId(addresses.getCustomerPublicId());
+
+		CustomerDetailsResponseModel returnValue = modelMapper.map(savedCustomerDTO, CustomerDetailsResponseModel.class);
+		
+		return returnValue;
+
+	}
+		
+	
 }

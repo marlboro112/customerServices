@@ -1,9 +1,18 @@
 package service.customer.api.request;
 
+import java.util.List;
+
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+@AllArgsConstructor
+@EqualsAndHashCode
+@ToString
 public class AddAddressToCustomerRequestModel {
 
 	private String customerPublicId;	
-	private AddressesRequestModel address;
+	private List<AddressesRequestModel> addresses;
 	
 	public String getCustomerPublicId() {
 		return customerPublicId;
@@ -11,55 +20,12 @@ public class AddAddressToCustomerRequestModel {
 	public void setCustomerPublicId(String customerPublicId) {
 		this.customerPublicId = customerPublicId;
 	}
-	public AddressesRequestModel getAddress() {
-		return address;
+	public List<AddressesRequestModel> getAddresses() {
+		return addresses;
 	}
-	public void setAddress(AddressesRequestModel address) {
-		this.address = address;
+	public void setAddresses(List<AddressesRequestModel> addresses) {
+		this.addresses = addresses;
 	}
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((address == null) ? 0 : address.hashCode());
-		result = prime * result + ((customerPublicId == null) ? 0 : customerPublicId.hashCode());
-		return result;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		AddAddressToCustomerRequestModel other = (AddAddressToCustomerRequestModel) obj;
-		if (address == null) {
-			if (other.address != null)
-				return false;
-		} else if (!address.equals(other.address))
-			return false;
-		if (customerPublicId == null) {
-			if (other.customerPublicId != null)
-				return false;
-		} else if (!customerPublicId.equals(other.customerPublicId))
-			return false;
-		return true;
-	}
-	@Override
-	public String toString() {
-		return "AddAddressToCustomerRequestModel [customerPublicId=" + customerPublicId + ", address=" + address + "]";
-	}
-	public AddAddressToCustomerRequestModel(String customerPublicId, AddressesRequestModel address) {
-		super();
-		this.customerPublicId = customerPublicId;
-		this.address = address;
-	}
-	public AddAddressToCustomerRequestModel() {
-		super();
-	}
-	
-	
 	
 	
 	

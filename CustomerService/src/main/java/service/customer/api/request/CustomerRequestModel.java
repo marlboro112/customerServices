@@ -2,7 +2,13 @@ package service.customer.api.request;
 
 import java.util.List;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
+@AllArgsConstructor
+@EqualsAndHashCode
+@ToString
 public class CustomerRequestModel {
 	
 	private String customerName;

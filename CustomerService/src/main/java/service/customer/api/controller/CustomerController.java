@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import service.customer.api.request.AddAddressToCustomerRequestModel;
 import service.customer.api.request.CustomerRequestModel;
 import service.customer.api.request.CustomerUpdateRequestModel;
 import service.customer.api.response.CustomerDetailsResponseModel;
@@ -86,7 +87,13 @@ public class CustomerController {
 	}
 	
 /***********************************************************************************************************************/
-	//TODO: Add address to  Customer by publicId
+	//Add address to  Customer by publicId
+	@PutMapping(path ="/addaddresstocustomer", consumes = { MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE })
+	public CustomerDetailsResponseModel addAddressToCustomer (@RequestBody AddAddressToCustomerRequestModel addresses) {
+		CustomerDetailsResponseModel returnValue = customerService.addAddressToCutsomerByPublicId(addresses);
+		
+		return returnValue;
+	}
 	
 /***********************************************************************************************************************/
 	//TODO: Add Contact Person to  Customer by publicId
