@@ -3,6 +3,7 @@ package service.customer.api.service;
 import java.util.Date;
 import java.util.UUID;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +34,7 @@ public class CountryServiceImpl implements CountryService {
 	}
 
 /*******************************************************************************************************************/
-	// Add new Country to database. Use for Administrator.
+	// Add new Country to database. Use for Super User.
 	@Override
 	public CountryResponseModel addCountry(CountryRequestModel country) {
 		CountryEntity checkStoredcountryEntity = countryRepository.findByCountryName(country.getCountryName());
@@ -62,5 +63,27 @@ public class CountryServiceImpl implements CountryService {
 	}
 	
 /**********************************************************************************************************************/
+	// Update Country information. Use for Super User
+	@Override
+	public CountryResponseModel updateCountry(CountryRequestModel country, String publicId) {
+		CountryDTO countryDTO = getCountryByPublicId(publicId);
+		Date currentDate = new Date();
+		countryDTO.setDescription(country.getDescription());
+		countryDTO.setModifiedBy(country.getLogedInUserPublicId());
+		countryDTO.setModified(currentDate);
+		countryDTO.setCountryName(country.getCountryName());
+		CountryEntity countryEntity = countryRepository.findByPublicId(publicId);
+		BeanUtils.copyProperties(countryDTO, countryEntity);
+		
+		CountryEntity savedCountryEntity = countryRepository.save(countryEntity);
+		CountryDTO savedCountryDTO = new CountryDTO();
+		BeanUtils.copyProperties(savedCountryEntity, savedCountryDTO);
+		CountryResponseModel returnValue = new CountryResponseModel();
+		BeanUtils.copyProperties(savedCountryDTO, returnValue);
+		
+		return returnValue;
+	}
+/**********************************************************************************************************************/	
 	
+
 }

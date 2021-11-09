@@ -9,7 +9,13 @@ import service.customer.api.response.CountryResponseModel;
 @Service
 public interface CountryService {
 
+	// Get Country by publicId
 	CountryDTO getCountryByPublicId(String publicId);
+	
+	//Add new Country info
 	CountryResponseModel addCountry (CountryRequestModel country);
+	
+	//Update Country info by publicId
+	CountryResponseModel updateCountry(CountryRequestModel country, String publicId);
 
 }
