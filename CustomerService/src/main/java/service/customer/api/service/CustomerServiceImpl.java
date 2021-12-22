@@ -207,6 +207,7 @@ public class CustomerServiceImpl implements CustomerService {
 			customerDTO.setModifiedBy(logedInUserPublicId);
 			customerDTO.setDeleted(true);
 			customerDTO.setDeletedBy(logedInUserPublicId);
+			customerDTO.setEnabled(false);
 			CustomerEntity customerEntity = modelMapper.map(customerDTO, CustomerEntity.class);		
 			customerRepository.save(customerEntity);
 			

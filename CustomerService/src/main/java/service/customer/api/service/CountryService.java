@@ -18,4 +18,7 @@ public interface CountryService {
 	//Update Country info by publicId
 	CountryResponseModel updateCountry(CountryRequestModel country, String publicId);
 
+	// Delete Country info by publicId
+    Boolean deleteCountry(String publicId,String logedInUserPublicId);
+
 }

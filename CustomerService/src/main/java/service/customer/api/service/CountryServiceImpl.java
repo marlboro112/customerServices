@@ -3,6 +3,7 @@ package service.customer.api.service;
 import java.util.Date;
 import java.util.UUID;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -83,7 +84,27 @@ public class CountryServiceImpl implements CountryService {
 		
 		return returnValue;
 	}
-/**********************************************************************************************************************/	
-	
+/**********************************************************************************************************************/
+	// Delete Country info by publicId
+	@Override
+	public Boolean deleteCountry(String publicId,String logedInUserPublicId) {
+		try {
+			Date currentDate = new Date();
+			ModelMapper modelMapper = new ModelMapper();
+			CountryDTO countryDTO = getCountryByPublicId(publicId);
+			countryDTO.setDeleted(true);
+			countryDTO.setDeletedBy(logedInUserPublicId);
+			countryDTO.setEnabled(false);
+			countryDTO.setModified(currentDate);
+			countryDTO.setModifiedBy(logedInUserPublicId);
+			CountryEntity countryEntity = modelMapper.map(countryDTO, CountryEntity.class);
+			countryRepository.save(countryEntity);
+		} catch (Exception e) {
+			return false;
+		}
+
+		return true;
+	}	
+		
 
 }
