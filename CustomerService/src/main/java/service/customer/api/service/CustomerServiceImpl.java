@@ -343,7 +343,27 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		return returnValue;
 	}
+/**********************************************************************************************************************/
+		//Enable Customer by publicId
+		@Override
+		public Boolean enableCustomer(String publicId, String logedInUserPublicId) {
+			try {
+				Date currentData = new Date();
+				ModelMapper modelMapper = new ModelMapper();
+				CustomerDTO customerDTO = getCustomerByPublicId(publicId);
+				customerDTO.setModified(currentData);
+				customerDTO.setModifiedBy(logedInUserPublicId);
+				customerDTO.setEnabled(true);
+				CustomerEntity customerEntity = modelMapper.map(customerDTO, CustomerEntity.class);		
+				customerRepository.save(customerEntity);
+				
+			} catch (Exception e) {
+				return false;
+			}
+			
+			return true;
+		}
 		
-	
+/*******************************************************************************************************************/
 	
 }

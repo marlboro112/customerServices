@@ -80,9 +80,18 @@ public class CustomerController {
 	
 /***********************************************************************************************************************/
 	// Disable Customer by publicId. If disabling was success returnValue=true, otherwise returnValue=false 
-	@GetMapping(path = "/{publicId}/{logedInUserPublicId}", consumes = { MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE })
+	@GetMapping(path = "/disable/{publicId}/{logedInUserPublicId}", consumes = { MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE })
 	public Boolean disableCustomer(@PathVariable("publicId") String publicId,@PathVariable("logedInUserPublicId") String logedInUserPublicId) {
 		Boolean returnValue = customerService.disableCustomer(publicId,logedInUserPublicId);
+		
+		return returnValue;
+	}
+
+/*********************************************************************************************************************/
+	// Enable Customer by publicId. If enabling was success returnValue=true, otherwise returnValue=false 
+	@GetMapping(path = "/enable/{publicId}/{logedInUserPublicId}", consumes = { MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE })
+	public Boolean enableCustomer(@PathVariable("publicId") String publicId,@PathVariable("logedInUserPublicId") String logedInUserPublicId) {
+		Boolean returnValue = customerService.enableCustomer(publicId,logedInUserPublicId);
 		
 		return returnValue;
 	}

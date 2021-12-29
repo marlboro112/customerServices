@@ -46,4 +46,7 @@ public interface CustomerService {
 	// Add new contact persons to Customer by publicId
 	CustomerDetailsResponseModel addContactPersonsToCutsomerByPublicId(AddContactPersonsToCustomerRequestModel contactPersones);
 
+	//Enable Customer by publicId
+    Boolean enableCustomer(String publicId, String logedInUserPublicId);
+
 }
