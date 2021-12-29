@@ -1,6 +1,8 @@
 package service.customer.api.service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import org.modelmapper.ModelMapper;
@@ -15,6 +17,7 @@ import service.customer.api.entity.CountryEntity;
 import service.customer.api.repository.CountryRepository;
 import service.customer.api.request.CountryRequestModel;
 import service.customer.api.response.CountryResponseModel;
+import service.customer.api.response.SuperUserCountryResponseModel;
 
 @Service
 public class CountryServiceImpl implements CountryService {
@@ -105,6 +108,67 @@ public class CountryServiceImpl implements CountryService {
 
 		return true;
 	}	
+/***********************************************************************************************************************/
+	// Disable Country info by publicId
+	@Override
+	public Boolean disableCountry(String publicId, String logedInUserPublicId) {
+		try {
+			Date currentDate = new Date();
+			ModelMapper modelMapper = new ModelMapper();
+			CountryDTO countryDTO = getCountryByPublicId(publicId);
+			countryDTO.setEnabled(false);
+			countryDTO.setModified(currentDate);
+			countryDTO.setModifiedBy(logedInUserPublicId);
+			CountryEntity countryEntity = modelMapper.map(countryDTO, CountryEntity.class);
+			countryRepository.save(countryEntity);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+/***************************************************************************************************************/
+	// Get Active Country List
+	@Override
+	public List<CountryResponseModel> getCountryList() {
+		Iterable<CountryEntity> countryEntitys = countryRepository.findAllActiveCountry();
+		List<CountryDTO> countryDTOs = new ArrayList<CountryDTO>();
+		List<CountryResponseModel> returnValue = new ArrayList<CountryResponseModel>();
+		ModelMapper modelMapper = new ModelMapper();
+		for(CountryEntity countryEntity : countryEntitys) {
+			CountryDTO countryDTO = new CountryDTO();
+			countryDTO = modelMapper.map(countryEntity, CountryDTO.class);
+			countryDTOs.add(countryDTO);
+		}		
+		for(CountryDTO countryDTO : countryDTOs) {
+			CountryResponseModel country = new CountryResponseModel();
+			country = modelMapper.map(countryDTO, CountryResponseModel.class);
+			returnValue.add(country);
+		}
 		
+		return returnValue;
+	}
+
+/****************************************************************************************************************/
+	//Get All country list for SuperUser
+	@Override
+	public List<SuperUserCountryResponseModel> getAllCountryList() {
+		Iterable<CountryEntity> countryEntitys = countryRepository.findAll();
+		List<CountryDTO> countryDTOs = new ArrayList<CountryDTO>();
+		List<SuperUserCountryResponseModel> returnValue = new ArrayList<SuperUserCountryResponseModel>();
+		ModelMapper modelMapper = new ModelMapper();
+		for(CountryEntity countryEntity : countryEntitys) {
+			CountryDTO countryDTO = new CountryDTO();
+			countryDTO = modelMapper.map(countryEntity, CountryDTO.class);
+			countryDTOs.add(countryDTO);
+		}		
+		for(CountryDTO countryDTO : countryDTOs) {
+			SuperUserCountryResponseModel country = new SuperUserCountryResponseModel();
+			country = modelMapper.map(countryDTO, SuperUserCountryResponseModel.class);
+			returnValue.add(country);
+		}
+		
+		return returnValue;
+	}
+
 
 }
