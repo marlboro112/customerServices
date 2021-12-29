@@ -93,7 +93,7 @@ public class CustomerController {
 	public Boolean enableCustomer(@PathVariable("publicId") String publicId,@PathVariable("logedInUserPublicId") String logedInUserPublicId) {
 		Boolean returnValue = customerService.enableCustomer(publicId,logedInUserPublicId);
 		
-		return returnValue;
+		return returnValue; 
 	}
 	
 /***********************************************************************************************************************/
