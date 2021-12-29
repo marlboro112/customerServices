@@ -56,6 +56,13 @@ public class CountryController {
 		return returnValue;
 	}
 
+/****************************************************************************************************************/
+	//Enable Country by publicId. If enabling was success returnValue=true, otherwise returnValue=false 
+	@GetMapping(path = "/enable/{publicId}/{logedInUserPublicId}", consumes = { MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE })
+	public Boolean enableCountry(@PathVariable("publicId") String publicId,@PathVariable("logedInUserPublicId") String logedInUserPublicId) {
+		Boolean returnValue = countryService.enableCountry(publicId,logedInUserPublicId);
+		return returnValue;
+	}
 /***************************************************************************************************************/
 	//Get Active Country list
 	@GetMapping(path ="/", consumes = { MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE })

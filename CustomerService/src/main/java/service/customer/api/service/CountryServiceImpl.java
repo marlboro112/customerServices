@@ -169,6 +169,24 @@ public class CountryServiceImpl implements CountryService {
 		
 		return returnValue;
 	}
-
+/********************************************************************************************************************/
+	//Enable Country info by publicId
+	@Override
+	public Boolean enableCountry(String publicId, String logedInUserPublicId) {
+		try {
+			Date currentDate = new Date();
+			ModelMapper modelMapper = new ModelMapper();
+			CountryDTO countryDTO = getCountryByPublicId(publicId);
+			countryDTO.setEnabled(true);
+			countryDTO.setModified(currentDate);
+			countryDTO.setModifiedBy(logedInUserPublicId);
+			CountryEntity countryEntity = modelMapper.map(countryDTO, CountryEntity.class);
+			countryRepository.save(countryEntity);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+/**********************************************************************************************************************/
 
 }

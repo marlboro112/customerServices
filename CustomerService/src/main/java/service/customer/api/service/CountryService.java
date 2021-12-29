@@ -33,4 +33,7 @@ public interface CountryService {
 	// Get All Country Llist for SuperUser
 	List<SuperUserCountryResponseModel> getAllCountryList();
 
+	//Enable Country Info by publicId
+    Boolean enableCountry(String publicId, String logedInUserPublicId);
+
 }
