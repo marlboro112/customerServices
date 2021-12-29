@@ -3,6 +3,7 @@ package service.customer.api.service;
 import java.util.Date;
 import java.util.UUID;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +38,7 @@ public class AddressesTypeServiceImpl implements AddressesTypeService {
 /****************************************************************************************************************************/
 
 	// Add new Address Type to Database
+	@Override
 	public AddressesTypeResponseModel addAddressesType (AddressesTypeRequestModel type) {
 		AddressesTypeEntity checkStoredAddressesTypeEntity = addressesTypeRepository.findByName(type.getName());
 		if (checkStoredAddressesTypeEntity != null) throw new RuntimeException(type.getName());
@@ -70,9 +72,70 @@ public class AddressesTypeServiceImpl implements AddressesTypeService {
 		return returnValue;	
 		
 	}
+
+/***************************************************************************************************************************/
+	// Delete AddressesType by publicId
+	@Override
+	public Boolean deleteAddressesType(String publicId, String logedInUserPublicId) {
+		try {
+			Date currentDate = new Date();
+			ModelMapper modelMapper = new ModelMapper();
+			AddressesTypeDTO addressesTypeDTO = getAddressTypeByPublicId(publicId);
+			addressesTypeDTO.setDeleted(true);
+			addressesTypeDTO.setDeletedBy(logedInUserPublicId);
+			addressesTypeDTO.setEnabled(false);
+			addressesTypeDTO.setModified(currentDate);
+			addressesTypeDTO.setModifiedBy(logedInUserPublicId);
+			AddressesTypeEntity addressesTypeEntity = modelMapper.map(addressesTypeDTO, AddressesTypeEntity.class);
+			addressesTypeRepository.save(addressesTypeEntity);
+		} catch (Exception e) {
+			return false;
+		}
+
+		return true;
+	}
+/********************************************************************************************************************/
+	// Disbale AddressesType by publicId
+	@Override
+	public Boolean disableAddressesType(String publicId, String logedInUserPublicId) {
+		try {
+			Date currentDate = new Date();
+			ModelMapper modelMapper = new ModelMapper();
+			AddressesTypeDTO addressesTypeDTO = getAddressTypeByPublicId(publicId);
+			addressesTypeDTO.setEnabled(false);
+			addressesTypeDTO.setModified(currentDate);
+			addressesTypeDTO.setModifiedBy(logedInUserPublicId);
+			AddressesTypeEntity addressesTypeEntity = modelMapper.map(addressesTypeDTO, AddressesTypeEntity.class);
+			addressesTypeRepository.save(addressesTypeEntity);
+		} catch (Exception e) {
+			return false;
+		}
+
+		return true;
+	}
+/**************************************************************************************************************************/
+	// Enable AddressesType by publicId
+	@Override
+	public Boolean enableAddressesType(String publicId, String logedInUserPublicId) {
+		try {
+			Date currentDate = new Date();
+			ModelMapper modelMapper = new ModelMapper();
+			AddressesTypeDTO addressesTypeDTO = getAddressTypeByPublicId(publicId);
+			addressesTypeDTO.setEnabled(true);
+			addressesTypeDTO.setModified(currentDate);
+			addressesTypeDTO.setModifiedBy(logedInUserPublicId);
+			AddressesTypeEntity addressesTypeEntity = modelMapper.map(addressesTypeDTO, AddressesTypeEntity.class);
+			addressesTypeRepository.save(addressesTypeEntity);
+		} catch (Exception e) {
+			return false;
+		}
+
+		return true;
+	}
 	
 /*********************************************************************************************************************************/
-	
+
+
 	
 
 }
