@@ -1,9 +1,11 @@
 package service.customer.api.service;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,7 @@ import service.customer.api.entity.AddressesTypeEntity;
 import service.customer.api.repository.AddressesTypeRepository;
 import service.customer.api.request.AddressesTypeRequestModel;
 import service.customer.api.response.AddressesTypeResponseModel;
+import service.customer.api.response.SuperUserAddressesTypeResponseMode;
 
 @Service
 public class AddressesTypeServiceImpl implements AddressesTypeService {
@@ -132,10 +135,42 @@ public class AddressesTypeServiceImpl implements AddressesTypeService {
 
 		return true;
 	}
-	
+
 /*********************************************************************************************************************************/
-
-
-	
+	//Update AddressesType by publicId
+	@Override
+	public AddressesTypeResponseModel updateAddressesType(AddressesTypeRequestModel type, String publicId) {
+		AddressesTypeDTO addressesTypeDTO = getAddressTypeByPublicId(publicId);
+		Date currentDate = new Date();
+		addressesTypeDTO.setDescription(type.getDescription());
+		addressesTypeDTO.setModifiedBy(type.getLogedInUserPublicId());
+		addressesTypeDTO.setModified(currentDate);
+		addressesTypeDTO.setName(type.getName());
+		AddressesTypeEntity addressesTypeEntity = addressesTypeRepository.findByPublicId(publicId);
+		BeanUtils.copyProperties(addressesTypeDTO, addressesTypeEntity);
+		
+		AddressesTypeEntity savedaddressesTypeEntity = addressesTypeRepository.save(addressesTypeEntity);
+		AddressesTypeDTO savedaddressesTypeDTO = new AddressesTypeDTO();
+		BeanUtils.copyProperties(savedaddressesTypeEntity, savedaddressesTypeDTO);
+		AddressesTypeResponseModel returnValue = new AddressesTypeResponseModel();
+		BeanUtils.copyProperties(savedaddressesTypeDTO, returnValue);
+		
+		return returnValue;
+	}
+/**********************************************************************************************************************/
+	// Get Active AddressesType List
+	@Override
+	public List<AddressesTypeResponseModel> getAddressesTypeList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+/********************************************************************************************************************/
+	// Get All AddressesType Llist for SuperUser
+	@Override
+	public List<SuperUserAddressesTypeResponseMode> getAllAddressesTypeList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+/*********************************************************************************************************************/
 
 }
