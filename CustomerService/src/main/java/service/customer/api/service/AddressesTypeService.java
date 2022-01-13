@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import service.customer.api.dto.AddressesTypeDTO;
 import service.customer.api.request.AddressesTypeRequestModel;
 import service.customer.api.response.AddressesTypeResponseModel;
-import service.customer.api.response.SuperUserAddressesTypeResponseMode;
+import service.customer.api.response.SuperUserAddressesTypeResponseModel;
 
 @Service
 public interface AddressesTypeService {
@@ -27,6 +27,7 @@ public interface AddressesTypeService {
 	// Get Active AddressesType List
 	List<AddressesTypeResponseModel> getAddressesTypeList();
 	// Get All AddressesType Llist for SuperUser
-	List<SuperUserAddressesTypeResponseMode> getAllAddressesTypeList();
+	List<SuperUserAddressesTypeResponseModel> getAllAddressesTypeList();
+
 
 }

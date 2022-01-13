@@ -1,5 +1,7 @@
 package service.customer.api.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import service.customer.api.request.AddressesTypeRequestModel;
 import service.customer.api.response.AddressesTypeResponseModel;
+import service.customer.api.response.SuperUserAddressesTypeResponseModel;
 import service.customer.api.service.AddressesTypeService;
 
 @RestController
@@ -68,9 +71,20 @@ public class AddressesTypeController {
 		return returnValue;
 	}
 /*********************************************************************************************************************/
-	//TODO: Get Active Address Type List
+	// Get Active Address Type List
+	@GetMapping(path ="/", consumes = { MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE })
+	public List<AddressesTypeResponseModel> getAddressesTypeList(){
+		List<AddressesTypeResponseModel> returnValue = addressesTypeService.getAddressesTypeList();
+		
+		return returnValue;
+	}
 
 /*********************************************************************************************************************/
-	//TODO: Get All Address Type List for SuperUser
-	
+	//Get All Address Type List for SuperUser
+	@GetMapping(path ="/superuser",consumes = { MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE })
+	public List<SuperUserAddressesTypeResponseModel> getAllCountryList(){
+		List<SuperUserAddressesTypeResponseModel> returnValue = addressesTypeService.getAllAddressesTypeList();
+		
+		return returnValue;
+	}
 }

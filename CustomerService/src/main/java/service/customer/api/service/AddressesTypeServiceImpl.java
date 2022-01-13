@@ -1,5 +1,6 @@
 package service.customer.api.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -16,7 +17,7 @@ import service.customer.api.entity.AddressesTypeEntity;
 import service.customer.api.repository.AddressesTypeRepository;
 import service.customer.api.request.AddressesTypeRequestModel;
 import service.customer.api.response.AddressesTypeResponseModel;
-import service.customer.api.response.SuperUserAddressesTypeResponseMode;
+import service.customer.api.response.SuperUserAddressesTypeResponseModel;
 
 @Service
 public class AddressesTypeServiceImpl implements AddressesTypeService {
@@ -161,15 +162,43 @@ public class AddressesTypeServiceImpl implements AddressesTypeService {
 	// Get Active AddressesType List
 	@Override
 	public List<AddressesTypeResponseModel> getAddressesTypeList() {
-		// TODO Auto-generated method stub
-		return null;
+		Iterable<AddressesTypeEntity> addressesTypeEntitys = addressesTypeRepository.findAllActiveAddressesType();
+		List<AddressesTypeDTO> addressesTypeDTOs = new ArrayList<AddressesTypeDTO>();
+		List<AddressesTypeResponseModel> returnValue = new ArrayList<AddressesTypeResponseModel>();
+		ModelMapper modelMapper = new ModelMapper();
+		for(AddressesTypeEntity addressesTypeEntity : addressesTypeEntitys) {
+			AddressesTypeDTO addressesTypeDTO = new AddressesTypeDTO();
+			addressesTypeDTO = modelMapper.map(addressesTypeEntity, AddressesTypeDTO.class);
+			addressesTypeDTOs.add(addressesTypeDTO);
+		}		
+		for(AddressesTypeDTO addressesTypeDTO : addressesTypeDTOs) {
+			AddressesTypeResponseModel addressesType = new AddressesTypeResponseModel();
+			addressesType = modelMapper.map(addressesTypeDTO, AddressesTypeResponseModel.class);
+			returnValue.add(addressesType);
+		}
+		
+		return returnValue;
 	}
 /********************************************************************************************************************/
 	// Get All AddressesType Llist for SuperUser
 	@Override
-	public List<SuperUserAddressesTypeResponseMode> getAllAddressesTypeList() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<SuperUserAddressesTypeResponseModel> getAllAddressesTypeList() {
+		Iterable<AddressesTypeEntity> addressesTypeEntitys = addressesTypeRepository.findAll();
+		List<AddressesTypeDTO> addressesTypeDTOs = new ArrayList<AddressesTypeDTO>();
+		List<SuperUserAddressesTypeResponseModel> returnValue = new ArrayList<SuperUserAddressesTypeResponseModel>();
+		ModelMapper modelMapper = new ModelMapper();
+		for(AddressesTypeEntity addressesTypeEntity : addressesTypeEntitys) {
+			AddressesTypeDTO addressesTypeDTO = new AddressesTypeDTO();
+			addressesTypeDTO = modelMapper.map(addressesTypeEntity, AddressesTypeDTO.class);
+			addressesTypeDTOs.add(addressesTypeDTO);
+		}		
+		for(AddressesTypeDTO addressesTypeDTO : addressesTypeDTOs) {
+			SuperUserAddressesTypeResponseModel addressesType = new SuperUserAddressesTypeResponseModel();
+			addressesType = modelMapper.map(addressesTypeDTO, SuperUserAddressesTypeResponseModel.class);
+			returnValue.add(addressesType);
+		}
+		
+		return returnValue;
 	}
 /*********************************************************************************************************************/
 

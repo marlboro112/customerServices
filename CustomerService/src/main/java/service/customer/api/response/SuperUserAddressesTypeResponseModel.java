@@ -2,7 +2,7 @@ package service.customer.api.response;
 
 import java.util.Date;
 
-public class SuperUserAddressesTypeResponseMode {
+public class SuperUserAddressesTypeResponseModel {
 
     private Long id;
     private String publicId;
