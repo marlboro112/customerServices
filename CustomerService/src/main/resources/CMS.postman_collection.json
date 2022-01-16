@@ -1,0 +1,1602 @@
+{
+	"info": {
+		"_postman_id": "158eb8ab-63d4-43eb-9240-dee737706fc5",
+		"name": "CMS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "UserController",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"rashad.aliyev@yahoo.com\",\n\t\"password\": \"123456\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"login"
+							]
+						},
+						"description": "User Login"
+					},
+					"response": []
+				},
+				{
+					"name": "Get user list",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE2Mjk2NDUxNzF9.RNDRmogM2ecab4goU5og_sPccVAHdXlcJ_xZ7zbmh3RiH7SS3AxUDSyX6s3y1kQYh-eS93xcnojyYFg3kofX7g",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								""
+							]
+						},
+						"description": "Get User List"
+					},
+					"response": []
+				},
+				{
+					"name": "Get user by UserPublicId",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE2Mjc1NTE5MTN9.xQTH5Vr-JkApWmvoEC7h4_T0e113CmxYDe2luQ7zofTUKwZWmFcksMcJkQoFTzgCyOrtNUHFot7go77PUMYtlQ",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/users/6Uct2PxYRXSUH1Xf6BTWB7cVI07Oof",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"6Uct2PxYRXSUH1Xf6BTWB7cVI07Oof"
+							]
+						},
+						"description": "Get User by UserPublicId"
+					},
+					"response": []
+				},
+				{
+					"name": "Create new user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE2MjY5NjQ0MDN9.4D6of6Yz3BO8YaVCw_vD8LI4eq64e3yHKglCZR-ZAvYVMQUVEOdNnlZdx3Y0PDryGp5VUDVsrQgNmpl4i8KrRA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"firstName\" : \"Rashad\",\n\t\"lastName\" : \"Aliyev\",\n\t\"email\" : \"user@yahoo.az\",\n\t\"password\" : \"123456\",\n\t\"organization\" : \"Ameco\",\n\t\"mobilePhone\" : \"994502501419\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								""
+							]
+						},
+						"description": "Create new user"
+					},
+					"response": []
+				},
+				{
+					"name": "Update user info by UserPublicId",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE1ODc5MjEyODd9.7ItlJQZFrxC21ao6CGiecdS5GiWxlM2b0_7DEP6DOTUvLh2Wyz4QVToqv4WfvgmpYkabJrjaAlxBrFUx-Wle2A",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"firstName\" : \"Rashad\",\n\t\"lastName\" : \"Aliyev\",\n\t\"email\" : \"rashad@yahoo.com\",\n\t\"password\" : \"123456\",\n\t\"organization\" : \"Ameco1\",\n\t\"mobilePhone\" : \"994502501419\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/6Uct2PxYRXSUH1Xf6BTWB7cVI07Oof",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"6Uct2PxYRXSUH1Xf6BTWB7cVI07Oof"
+							]
+						},
+						"description": "Create new user"
+					},
+					"response": []
+				},
+				{
+					"name": "Update user Profile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE1ODc5MjEyODd9.7ItlJQZFrxC21ao6CGiecdS5GiWxlM2b0_7DEP6DOTUvLh2Wyz4QVToqv4WfvgmpYkabJrjaAlxBrFUx-Wle2A"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"firstName\" : \"Rashad\",\n\t\"lastName\" : \"Aliyev\",\n\t\"email\" : \"rashad@yahoo.com\",\n\t\"password\" : \"123456\",\n\t\"organization\" : \"Ameco\",\n\t\"mobilePhone\" : \"994502501419\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/profile/6Uct2PxYRXSUH1Xf6BTWB7cVI07Oof",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"profile",
+								"6Uct2PxYRXSUH1Xf6BTWB7cVI07Oof"
+							]
+						},
+						"description": "Create new user"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE1ODAzMTk5OTJ9.cje2Lo1A59fWaTkkXVl4aMYbDAhfhhDYeLWq4PZjp1qNx7v6GelPAU-YCuiloLCQ93IsOnZGXwZkElWIRdNiXA"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/users/ZHDQ5mNa7F00cZK9iQZd55IGus2AxS",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"ZHDQ5mNa7F00cZK9iQZd55IGus2AxS"
+							]
+						},
+						"description": "Create new user"
+					},
+					"response": []
+				},
+				{
+					"name": "Disable user",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE1ODAzMTk5OTJ9.cje2Lo1A59fWaTkkXVl4aMYbDAhfhhDYeLWq4PZjp1qNx7v6GelPAU-YCuiloLCQ93IsOnZGXwZkElWIRdNiXA"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/users/ZHDQ5mNa7F00cZK9iQZd55IGus2AxS",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"ZHDQ5mNa7F00cZK9iQZd55IGus2AxS"
+							]
+						},
+						"description": "Create new user"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "RoleController",
+			"item": [
+				{
+					"name": "Get Role List",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE2Mjk2NDUxNzF9.RNDRmogM2ecab4goU5og_sPccVAHdXlcJ_xZ7zbmh3RiH7SS3AxUDSyX6s3y1kQYh-eS93xcnojyYFg3kofX7g",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/roles/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"roles",
+								""
+							]
+						},
+						"description": "Get Role List"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Role",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE1ODAzMjcxOTl9.X4jmkx4iKNeX90VdsmU5CABv7jqYWkoiWDK0hY4Hc3wRCp19Uw7OrLA1V9fjghtEHW57Hg5Tnoxn6CTWFKaU2w"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/roles/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"roles",
+								""
+							]
+						},
+						"description": "Get Role List"
+					},
+					"response": []
+				},
+				{
+					"name": "Create new Role",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE1ODAzMjcxOTl9.X4jmkx4iKNeX90VdsmU5CABv7jqYWkoiWDK0hY4Hc3wRCp19Uw7OrLA1V9fjghtEHW57Hg5Tnoxn6CTWFKaU2w",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"role\" : \"Sale\",\n\t\"enabled\" : \"true\",\n\t\"description\" : \"Sales team role\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/roles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"roles"
+							]
+						},
+						"description": "Create new Role"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Role",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE2MjUwNTE0Nzd9.z8XMUJIc0wA6N34D5L4vB0SRDNQLl7j6UaLQycaODVwYiu2WgTIUDRq3dEguMNeyig9Lmri98j5nIM6Npa-fOw"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"role\" : \"Sale\",\n\t\"enabled\" : \"true\",\n\t\"description\" : \"Sales team role\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/roles/hos6B",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"roles",
+								"hos6B"
+							]
+						},
+						"description": "Create new Role"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Role Permissions",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE1ODc5MjEyODd9.7ItlJQZFrxC21ao6CGiecdS5GiWxlM2b0_7DEP6DOTUvLh2Wyz4QVToqv4WfvgmpYkabJrjaAlxBrFUx-Wle2A"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"rolePublicId\" : \"35Ch5\",\n\t\"permissions\" : [\n                {\n                    \"id\": 15\n                    \n                },\n                                {\n                    \"id\": 16\n                    \n                }\n\n            ]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/roles/permissions/35Ch5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"roles",
+								"permissions",
+								"35Ch5"
+							]
+						},
+						"description": "Create new Role"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "EquipmentTypeController",
+			"item": [
+				{
+					"name": "Get Equpment Type list",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE1ODg2MDg3MDB9.hsnhVx6o9AMXKTdNJIQqP9XV9Sl0cjzoyLEyp4AxC-drv0nQ6JTjCq2bARYUgZSy7L-js-P5Evop2rRNOu739A",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/equipmenttype/O8rhon7ieU",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"equipmenttype",
+								"O8rhon7ieU"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create  Equpment Type",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE1ODgzNDI2OTl9.sCHpFB83lZhyiddZlcP_klKgy-ywN-v4hbFKLsSyl8Ynv1df9xchTM-ZpKgI6Lk9hlizVHa8lWIiLQI589ok1Q",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"MRT cihazı\",\n\t\"description\" : \"Maqnit Rezonans Tomoqrafiya cihazı\"\n\t\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/equipmenttype/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"equipmenttype",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Equpment Type",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE1ODc5MTc2MDV9.WIPLoQHzOI514DB7FBhRb7Bz-9M5vOqP1Zb0OoN03sbyhScAJ4_2D5BgEeRgF9mgcflu9DQG3beyYAwG2kxgOQ",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Angioqrafiya cihazı\",\n\t\"description\" : \"Angioqrafiya cihazı:-Ürək-damar cərrahiyyəsi\"\n\t\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/equipmenttype/griSS1vsl0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"equipmenttype",
+								"griSS1vsl0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Equpment Type",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE1ODc5MTc2MDV9.WIPLoQHzOI514DB7FBhRb7Bz-9M5vOqP1Zb0OoN03sbyhScAJ4_2D5BgEeRgF9mgcflu9DQG3beyYAwG2kxgOQ",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/equipmenttype/delete/griSS1vsl0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"equipmenttype",
+								"delete",
+								"griSS1vsl0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Disable Equpment Type",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE1ODc5MTc2MDV9.WIPLoQHzOI514DB7FBhRb7Bz-9M5vOqP1Zb0OoN03sbyhScAJ4_2D5BgEeRgF9mgcflu9DQG3beyYAwG2kxgOQ",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/equipmenttype/disable/griSS1vsl0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"equipmenttype",
+								"disable",
+								"griSS1vsl0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Enable Equpment Type",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE1ODc5MTc2MDV9.WIPLoQHzOI514DB7FBhRb7Bz-9M5vOqP1Zb0OoN03sbyhScAJ4_2D5BgEeRgF9mgcflu9DQG3beyYAwG2kxgOQ",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/equipmenttype/enable/griSS1vsl0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"equipmenttype",
+								"enable",
+								"griSS1vsl0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Equpment Type Details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE1ODc5MTc2MDV9.WIPLoQHzOI514DB7FBhRb7Bz-9M5vOqP1Zb0OoN03sbyhScAJ4_2D5BgEeRgF9mgcflu9DQG3beyYAwG2kxgOQ",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/equipmenttype/w8cn11KWXJ",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"equipmenttype",
+								"w8cn11KWXJ"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "EquipmentModelController",
+			"item": [
+				{
+					"name": "Create  Equpment Model",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE1ODgzNDI2OTl9.sCHpFB83lZhyiddZlcP_klKgy-ywN-v4hbFKLsSyl8Ynv1df9xchTM-ZpKgI6Lk9hlizVHa8lWIiLQI589ok1Q",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"equipmentTypepublicId\" : \"O8rhon7ieU\",\n\t\"name\" : \"Magnetom Avanto\",\n\t\"description\" : \"Maqnit Rezonans Tomoqrafiya cihazı\"\n\t\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/equipmentmodel/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"equipmentmodel",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Equpment Model list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE1ODgzNDYzOTB9.MJGGHCMOnJldwVMocm3nXbG9qz17H-4JxLZdAe5TyPQhV1MGsYAVBDgpKVIixSCbBNROM9BX8X3K7Mfxvp5N1A",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/equipmentmodel/4cUounY1Sq",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"equipmentmodel",
+								"4cUounY1Sq"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update  Equpment Model",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE1ODgzNDYzOTB9.MJGGHCMOnJldwVMocm3nXbG9qz17H-4JxLZdAe5TyPQhV1MGsYAVBDgpKVIixSCbBNROM9BX8X3K7Mfxvp5N1A",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Magnetom Avanto\",\n    \"description\": \"Maqnit Rezonans Tomoqrafiya cihazı\"\n\t\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/equipmentmodel/4cUounY1Sq",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"equipmentmodel",
+								"4cUounY1Sq"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Disable Equpment Model",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE1ODgzNDYzOTB9.MJGGHCMOnJldwVMocm3nXbG9qz17H-4JxLZdAe5TyPQhV1MGsYAVBDgpKVIixSCbBNROM9BX8X3K7Mfxvp5N1A"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/equipmentmodel/disable/oFtm3LxzJA",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"equipmentmodel",
+								"disable",
+								"oFtm3LxzJA"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete  Equpment Model",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE1ODgzNDYzOTB9.MJGGHCMOnJldwVMocm3nXbG9qz17H-4JxLZdAe5TyPQhV1MGsYAVBDgpKVIixSCbBNROM9BX8X3K7Mfxvp5N1A"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/equipmentmodel/delete/oFtm3LxzJA",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"equipmentmodel",
+								"delete",
+								"oFtm3LxzJA"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Enable Equpment Model",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE1ODgzNDYzOTB9.MJGGHCMOnJldwVMocm3nXbG9qz17H-4JxLZdAe5TyPQhV1MGsYAVBDgpKVIixSCbBNROM9BX8X3K7Mfxvp5N1A"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/equipmentmodel/enable/oFtm3LxzJA",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"equipmentmodel",
+								"enable",
+								"oFtm3LxzJA"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CustomerController",
+			"item": [
+				{
+					"name": "Create  Customer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE1OTIzMzE0NTV9.wFBx1ivppb6QGLKn9OBovezELTZAxEwvUEla2lf1MSD7Ta3umL-6j62OjWAq1Uh_scfHTppRyDAAe1WSeKOQ8g"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"customerName\" : \"Mərkəzi Klinik Xəstəxana\",\n\t\"description\" : \"Müştəri haqqında əlavə məlumat\",\n\t\"addresses\" : [\n\t\t{\n\t\t\t\"streetName\" : \"Parlament pro.96\",\n\t\t\t\"postCode\" : \"AZ1010\",\n\t\t\t\"cityPublicId\": \"gtryU86jdt\",\n\t\t\t\"countryPublicId\" : \"gcb7U86jdt\",\n\t\t\t\"typePublicId\" : \"gtlpeio9dt\",\n\t\t\t\"description\" : \"Ünvan barədə əlavə məlumat\"\n\t\t},\n\t\t\t\t{\n\t\t\t\"streetName\" : \"Parlament pro.96\",\n\t\t\t\"postCode\" : \"AZ1010\",\n\t\t\t\"cityPublicId\": \"gtryU86jdt\",\n\t\t\t\"countryPublicId\" : \"gcb7U86jdt\",\n\t\t\t\"typePublicId\" : \"gtl098o9dt\",\n\t\t\t\"description\" : \"Ünvan barədə əlavə məlumat\"\n\t\t}\n\t\t\n\t\t\t],\n\t\"contactPersones\" : [\n\t\t{\n\t\t\t\"fullName\" : \"Abbas Mustafayev\",\n\t\t\t\"phoneNumber\" : \"+994124991001\",\n\t\t\t\"mobileNumber\" : \"+99455778377\",\n\t\t\t\"email\" : \"abbas@yahoo.com\",\n\t\t\t\"position\" : \"biomedikal mühəndis\",\n\t\t\t\"description\" : \"Ağıllı oğlandır\"\n\t\t\t\n\t\t},\n\t\t\t\t{\n\t\t\t\"fullName\" : \"Abbas Mustafayev\",\n\t\t\t\"phoneNumber\" : \"+994124991001\",\n\t\t\t\"mobileNumber\" : \"+99455778377\",\n\t\t\t\"email\" : \"abbas@yahoo.com\",\n\t\t\t\"position\" : \"biomedikal mühəndis\",\n\t\t\t\"description\" : \"Ağıllı oğlandır\"\n\t\t\t\n\t\t}\n\t\t]\n\t\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/customer/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Customer list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE1OTIzMjYwNTR9.N-w7E232oDv0u-w4OYWYviHdaGrH-cSH1nnBcMoNgtWOrWBmfVQ4i6GTjU8G6SW10XWO4Vraut8acGKQ5UhhoQ"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/customer/yfe2Xq8iJ0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer",
+								"yfe2Xq8iJ0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update  Customer",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE1OTA2ODg1NTF9.Mom1uDUw0aJiOMZQkWgxUoVJzvyLceOjnTC8W0pwDjp4fROun8ZlJjl983l5kSQWg1ah2F_UEfwLOi5PRwEf",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "az",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n\t\"customerName\" : \"Mərkəzi Klinik Xəstəxana2\",\n\t\"description\" : \"Musteri barede elave melumat deyisdi\",\n\t\"enabled\" : true\n\t\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/customer/tDq0CA1MrN",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer",
+								"tDq0CA1MrN"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddAddressToCustomer",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE1OTIzMzE0NTV9.wFBx1ivppb6QGLKn9OBovezELTZAxEwvUEla2lf1MSD7Ta3umL-6j62OjWAq1Uh_scfHTppRyDAAe1WSeKOQ8g"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept-Language",
+								"type": "text",
+								"value": "az",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\t{\n\t\t\"streetName\" : \"Parlament pro.96\",\n\t\t\"postCode\" : \"AZ1010\",\n\t\t\"cityPublicId\": \"gtryU86jdt\",\n\t\t\"countryPublicId\" : \"gcb7U86jdt\",\n\t\t\"typePublicId\" : \"gtlp3459dt\",\n\t\t\"description\" : \"Ünvan barədə əlavə məlumat\"\n\t}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/customer/6KIaaLFPvJ/address",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer",
+								"6KIaaLFPvJ",
+								"address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddContactPersonToCustomer Copy",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE1OTIzMzE0NTV9.wFBx1ivppb6QGLKn9OBovezELTZAxEwvUEla2lf1MSD7Ta3umL-6j62OjWAq1Uh_scfHTppRyDAAe1WSeKOQ8g"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept-Language",
+								"type": "text",
+								"value": "az",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\t{\n\t\t\"fullName\" : \"Abbas Mustafayev\",\n\t\t\"phoneNumber\" : \"+994124991001\",\n\t\t\"mobileNumber\" : \"+99455778377\",\n\t\t\"email\" : \"abbas@yahoo.com\",\n\t\t\"position\" : \"biomedikal mühəndis\",\n\t\t\"description\" : \"Ağıllı oğlandır\"\n\t\t\t\n\t}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/customer/6KIaaLFPvJ/contactperson",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer",
+								"6KIaaLFPvJ",
+								"contactperson"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete  Customer",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE1ODk3NDE4MDN9.jNeazGVRqgVfzm4PUgx1-iPj9ViHCFjcfjgCMGYFeo_mf64uiJ3IQn3xIs7qYc4aBqaTKHoORfmK5nuBc6COog",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/customer/VAQVOwKRvt",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer",
+								"VAQVOwKRvt"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AddressesController",
+			"item": [
+				{
+					"name": "Get Addresses List",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE1OTIzMTk2NDN9.C_UDwDPJHO3ipJ3ubABgQ-1U6w2FpBwuKvbgF-bcoaIeS8IRtuuZVsN4rNvAeEsNBuDP249J5zMqN5lBuLTiGg",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/address/super",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"address",
+								"super"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Address By PublicId",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE1OTIzMzE0NTV9.wFBx1ivppb6QGLKn9OBovezELTZAxEwvUEla2lf1MSD7Ta3umL-6j62OjWAq1Uh_scfHTppRyDAAe1WSeKOQ8g"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/address/super",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"address",
+								"super"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Address",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE1OTIzMTk2NDN9.C_UDwDPJHO3ipJ3ubABgQ-1U6w2FpBwuKvbgF-bcoaIeS8IRtuuZVsN4rNvAeEsNBuDP249J5zMqN5lBuLTiGg"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\t{\n\t\t\t\"streetName\" : \"Parlament pro.96\",\n\t\t\t\"postCode\" : \"AZ1010\",\n\t\t\t\"cityPublicId\": \"gtryU86jdt\",\n\t\t\t\"countryPublicId\" : \"gcb7U86jdt\",\n\t\t\t\"typePublicId\" : \"gtlpeio9dt\",\n\t\t\t\"description\" : \"yeni unvan\"\n\t\t}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/address/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"address",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Address",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE1OTIzMTk2NDN9.C_UDwDPJHO3ipJ3ubABgQ-1U6w2FpBwuKvbgF-bcoaIeS8IRtuuZVsN4rNvAeEsNBuDP249J5zMqN5lBuLTiGg"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\t{\n\t\t\t\"streetName\" : \"Parlament pro.96\",\n\t\t\t\"postCode\" : \"AZ1010\",\n\t\t\t\"cityPublicId\": \"gtryU86jdt\",\n\t\t\t\"countryPublicId\" : \"gcb7U86jdt\",\n\t\t\t\"typePublicId\" : \"gtlpeio9dt\",\n\t\t\t\"description\" : \"yeni unvan update\"\n\t\t}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/address/ThkE11oRFA",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"address",
+								"ThkE11oRFA"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ContactPersonesController",
+			"item": [
+				{
+					"name": "Get Contact Persones List",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE1OTIzMzE3OTV9.wLThDGHOK_ZYSu_roS3yzojcsM3c0Vu4lsImsQi0Abms_qiDd0rBuEhn5a0WhMxBmx-k1Ry6OdVeELCARwd7aw",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/contactpersones/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contactpersones",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Contact Persones by PublicId",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE1OTIzMzE3OTV9.wLThDGHOK_ZYSu_roS3yzojcsM3c0Vu4lsImsQi0Abms_qiDd0rBuEhn5a0WhMxBmx-k1Ry6OdVeELCARwd7aw"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/contactpersones/4y95My7G4v",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contactpersones",
+								"4y95My7G4v"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Contact Persones",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE1OTIzMzE3OTV9.wLThDGHOK_ZYSu_roS3yzojcsM3c0Vu4lsImsQi0Abms_qiDd0rBuEhn5a0WhMxBmx-k1Ry6OdVeELCARwd7aw"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\t{\n\t\t\"fullName\" : \"Abbas Mustafayev\",\n\t\t\"phoneNumber\" : \"+994124991001\",\n\t\t\"mobileNumber\" : \"+99455778377\",\n\t\t\"email\" : \"abbas@yahoo.com\",\n\t\t\"position\" : \"biomedikal mühəndis\",\n\t\t\"description\" : \"Ağıllı oğlandır\"\n\t\t\t\n\t}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/contactpersones/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contactpersones",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Contact Persones",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2VWN0MlB4WVJYU1VIMVhmNkJUV0I3Y1ZJMDdPb2YiLCJleHAiOjE1OTIzMzE3OTV9.wLThDGHOK_ZYSu_roS3yzojcsM3c0Vu4lsImsQi0Abms_qiDd0rBuEhn5a0WhMxBmx-k1Ry6OdVeELCARwd7aw"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\t{\n\t\t\"fullName\" : \"Abbas Mustafayev\",\n\t\t\"phoneNumber\" : \"+994124991001\",\n\t\t\"mobileNumber\" : \"+99455778377\",\n\t\t\"email\" : \"abbas@yahoo.com\",\n\t\t\"position\" : \"biomedikal mühəndis\",\n\t\t\"description\" : \"Ağıllı\"\n\t\t\t\n\t}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/contactpersones/CngtCtcp0t",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contactpersones",
+								"CngtCtcp0t"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "RegistrationController",
+			"item": [
+				{
+					"name": "Registration",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"firstName\" : \"Rashad2\",\n\t\"lastName\" : \"Aliyev2\",\n\t\"email\" : \"marlboro1122001@yahoo.com\",\n\t\"password\" : \"123456\",\n\t\"organization\" : \"Ameco1\",\n\t\"mobilePhone\" : \"9945025014191\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/register/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"register",
+								""
+							]
+						},
+						"description": "Create new user"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
