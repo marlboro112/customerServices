@@ -11,5 +11,6 @@ public interface CityService {
 
 	CityDTO getCityByPublicId(String publicId);
 	CityResponseModel addCity (CityRequestModel city);
+	CityResponseModel updateCity(CityRequestModel city, String publicId);
 
 }

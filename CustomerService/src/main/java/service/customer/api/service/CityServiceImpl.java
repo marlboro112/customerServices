@@ -38,7 +38,7 @@ public class CityServiceImpl implements CityService {
 	
 /***************************************************************************************************************/
 
-	// Add City to Database for Administrator use
+	// Add City Info
 	@Override
 	public CityResponseModel addCity(CityRequestModel city) {
 		CityEntity checkStoredcityEntity = cityRepository.findByCityName(city.getCityName());
@@ -73,6 +73,33 @@ public class CityServiceImpl implements CityService {
 	}
 	
 /*******************************************************************************************************************/
+	// Update City info
+	@Override
+	public CityResponseModel updateCity(CityRequestModel city, String publicId) {
+		Date currentDate = new Date();
+		Gson gson = new Gson();
+		CityDTO cityDTO = getCityByPublicId(publicId);
+		cityDTO.setDescription(city.getDescription());
+		cityDTO.setModifiedBy(city.getLogedInUserPublicId());
+		cityDTO.setModified(currentDate);
+		cityDTO.setCityName(city.getCityName());
+		cityDTO.setCountry(countryService.getCountryByPublicId(city.getCountryPublicId()));	
+		String temp = gson.toJson(cityDTO);
+		CityEntity cityEntity = gson.fromJson(temp, CityEntity.class);
+		CityEntity savedCityEntity = cityRepository.save(cityEntity);
+		temp = gson.toJson(savedCityEntity);
+		CityDTO savedCityDTO = gson.fromJson(temp, CityDTO.class);
+		CityResponseModel returnValue = new CityResponseModel();
+		returnValue.setCityName(savedCityDTO.getCityName());
+		returnValue.setCountryName(savedCityDTO.getCountry().getCountryName());
+		returnValue.setDescription(savedCityDTO.getDescription());
+		returnValue.setEnabled(savedCityDTO.getEnabled());
+		returnValue.setPublicId(savedCityDTO.getPublicId());
+		return returnValue;
+	}
+	
+/*******************************************************************************************************************/
+	
 	
 	
 }
