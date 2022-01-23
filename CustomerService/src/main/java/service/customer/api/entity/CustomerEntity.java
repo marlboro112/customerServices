@@ -24,6 +24,9 @@ public class CustomerEntity extends BaseEntity {
 	@Column(name = "customerName", length = 250, nullable = false, unique = true)
 	private String customerName;
 	
+	@Column(name = "taxIDorPIN", length = 250, nullable = false, unique = true)
+	private String taxIDorPIN;
+	
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
 	private List<ContactPersonesEntity> contactPersones;
 
@@ -36,6 +39,14 @@ public class CustomerEntity extends BaseEntity {
 
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
+	}
+
+	public String getTaxIDorPIN() {
+		return taxIDorPIN;
+	}
+
+	public void setTaxIDorPIN(String taxIDorPIN) {
+		this.taxIDorPIN = taxIDorPIN;
 	}
 
 	public List<ContactPersonesEntity> getContactPersones() {

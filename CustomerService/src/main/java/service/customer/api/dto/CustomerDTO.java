@@ -10,6 +10,7 @@ public class CustomerDTO extends BaseDTO {
 	private static final long serialVersionUID = 4501159034067295285L;
 	
 	private String customerName;
+	private String taxIDorPIN;
 	private List<AddressesDTO> addresses;
 	private List<ContactPersonesDTO> contactPersones;
 	public String getCustomerName() {
@@ -17,6 +18,12 @@ public class CustomerDTO extends BaseDTO {
 	}
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
+	}
+	public String getTaxIDorPIN() {
+		return taxIDorPIN;
+	}
+	public void setTaxIDorPIN(String taxIDorPIN) {
+		this.taxIDorPIN = taxIDorPIN;
 	}
 	public List<AddressesDTO> getAddresses() {
 		return addresses;

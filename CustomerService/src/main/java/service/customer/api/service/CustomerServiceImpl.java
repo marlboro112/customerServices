@@ -66,6 +66,7 @@ public class CustomerServiceImpl implements CustomerService {
 		customerDTO.setDeletedBy("Not Deleted Yet");
 		customerDTO.setEnabled(true);
 		customerDTO.setCustomerName(customer.getCustomerName());
+		customerDTO.setTaxIDorPIN(customer.getTaxIDorPIN());
 		customerDTO.setDescription(customer.getDescription());
 		
 		//Get Customer Contact Persons and add to Customer Info

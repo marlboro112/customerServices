@@ -12,6 +12,7 @@ import lombok.ToString;
 public class CustomerRequestModel {
 	
 	private String customerName;
+	private String taxIDorPIN;
 	private String description;
 	private String logedInUserPublicId;
 	private List<AddressesRequestModel> addresses;
@@ -22,6 +23,12 @@ public class CustomerRequestModel {
 	}
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
+	}
+	public String getTaxIDorPIN() {
+		return taxIDorPIN;
+	}
+	public void setTaxIDorPIN(String taxIDorPIN) {
+		this.taxIDorPIN = taxIDorPIN;
 	}
 	public String getDescription() {
 		return description;
