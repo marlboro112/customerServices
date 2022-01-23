@@ -1,7 +1,11 @@
 package service.customer.api.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -11,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import service.customer.api.request.CityRequestModel;
 import service.customer.api.response.CityResponseModel;
+import service.customer.api.response.SuperUserCityResponseModel;
 import service.customer.api.service.CityService;
 
 @RestController
@@ -40,17 +45,42 @@ public class CityController {
 		return returnValue;
 	}
 /*************************************************************************************************************/
-	//TODO: Get Active City list for selected Country
+	// Get Active City list for selected Country
+	@GetMapping(path ="/{countryPublicId}", consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE, 
+			MediaType.APPLICATION_XML_VALUE })
+	public List<CityResponseModel> getActiveCityListByCountry (@PathVariable String countryPublicId) {		
+		List<CityResponseModel> returnValue = cityService.getActiveCityListByCountry(countryPublicId);
+		return returnValue;
+	}
 /*************************************************************************************************************/
-	//TODO: Get All City list for Super User
+	// Get All City list by Country for Super User
+	@GetMapping(path ="/superuser/{countryPublicId}", consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE, 
+			MediaType.APPLICATION_XML_VALUE })
+	public List<SuperUserCityResponseModel> getActiveCityList (@PathVariable String countryPublicId) {		
+		List<SuperUserCityResponseModel> returnValue = cityService.getAllCityListByCountry(countryPublicId);
+		return returnValue;
+	}
 /*************************************************************************************************************/
-	//TODO: Disable City Info by pubicId
+	// Disable City Info by pubicId
+	@GetMapping(path = "/disable/{publicId}/{logedInUserPublicId}", consumes = { MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE })
+	public Boolean disableCity(@PathVariable("publicId") String publicId,@PathVariable("logedInUserPublicId") String logedInUserPublicId) {
+		Boolean returnValue = cityService.disableCity(publicId,logedInUserPublicId);
+		return returnValue;
+	}
 /*************************************************************************************************************/
-	//TODO: Enable City Info by pbicId
+	// Enable City Info by pbicId
+	@GetMapping(path = "/enable/{publicId}/{logedInUserPublicId}", consumes = { MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE })
+	public Boolean enableCity(@PathVariable("publicId") String publicId,@PathVariable("logedInUserPublicId") String logedInUserPublicId) {
+		Boolean returnValue = cityService.enableCity(publicId,logedInUserPublicId);
+		return returnValue;
+	}
 /*************************************************************************************************************/
-	//TODO: Delete City Info by publicId
-/*************************************************************************************************************/
-	//TODO: Add City info to Country
+	// Delete City Info by publicId
+	@DeleteMapping(path = "/{publicId}/{logedInUserPublicId}", consumes = { MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE })
+	public Boolean deleteCity(@PathVariable("publicId") String publicId,@PathVariable("logedInUserPublicId") String logedInUserPublicId) {
+		Boolean returnValue = cityService.deleteCity(publicId,logedInUserPublicId);
+		return returnValue;
+	}
 /*************************************************************************************************************/
 	
 }
