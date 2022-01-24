@@ -14,7 +14,9 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class RequisitesEntity extends BaseEntity {
     
-    private String bankName;
+	private static final long serialVersionUID = 6503465558218778130L;
+	
+	private String bankName;
     private String bankAddress;
     private String bankCode;
     private String bankTaxId;
