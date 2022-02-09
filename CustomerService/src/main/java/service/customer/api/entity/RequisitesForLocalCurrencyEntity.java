@@ -1,5 +1,7 @@
 package service.customer.api.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -8,33 +10,26 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 @Entity
-@Table(name = "Requisites")
+@Table(name = "equisitesForLocalCurrency")
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode
-public class RequisitesEntity extends BaseEntity {
+public class RequisitesForLocalCurrencyEntity extends BaseEntity {
     
-    private String bankName;
-    private String bankAddress;
+    private String bankName;    
     private String bankCode;
     private String bankTaxId;
     private String bankCorrespondentAccount;
     private String bankSwift;
-    private String customerName;
+    private String bankAddress;
     private String customerAccountNumber;
-    private String currency;
+    private List <CurrencyEntity> currency;
     
     public String getBankName() {
         return bankName;
     }
     public void setBankName(String bankName) {
         this.bankName = bankName;
-    }
-    public String getBankAddress() {
-        return bankAddress;
-    }
-    public void setBankAddress(String bankAddress) {
-        this.bankAddress = bankAddress;
     }
     public String getBankCode() {
         return bankCode;
@@ -60,11 +55,11 @@ public class RequisitesEntity extends BaseEntity {
     public void setBankSwift(String bankSwift) {
         this.bankSwift = bankSwift;
     }
-    public String getCustomerName() {
-        return customerName;
+    public String getBankAddress() {
+        return bankAddress;
     }
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public void setBankAddress(String bankAddress) {
+        this.bankAddress = bankAddress;
     }
     public String getCustomerAccountNumber() {
         return customerAccountNumber;
@@ -72,12 +67,14 @@ public class RequisitesEntity extends BaseEntity {
     public void setCustomerAccountNumber(String customerAccountNumber) {
         this.customerAccountNumber = customerAccountNumber;
     }
-    public String getCurrency() {
+    public List<CurrencyEntity> getCurrency() {
         return currency;
     }
-    public void setCurrency(String currency) {
+    public void setCurrency(List<CurrencyEntity> currency) {
         this.currency = currency;
     }
+    
+    
 
     
 }
