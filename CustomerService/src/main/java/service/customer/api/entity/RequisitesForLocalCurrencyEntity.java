@@ -16,14 +16,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class RequisitesForLocalCurrencyEntity extends BaseEntity {
     
-<<<<<<< HEAD:CustomerService/src/main/java/service/customer/api/entity/RequisitesForLocalCurrencyEntity.java
     private String bankName;    
-=======
-	private static final long serialVersionUID = 6503465558218778130L;
-	
-	private String bankName;
-    private String bankAddress;
->>>>>>> f3330d20ad216fa0fc3e7d77bea229263bebfcb7:CustomerService/src/main/java/service/customer/api/entity/RequisitesEntity.java
     private String bankCode;
     private String bankTaxId;
     private String bankCorrespondentAccount;
@@ -31,7 +24,7 @@ public class RequisitesForLocalCurrencyEntity extends BaseEntity {
     private String bankAddress;
     private String customerAccountNumber;
     private List <CurrencyEntity> currency;
-    
+
     public String getBankName() {
         return bankName;
     }
