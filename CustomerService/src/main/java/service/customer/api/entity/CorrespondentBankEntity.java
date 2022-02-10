@@ -14,7 +14,9 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class CorrespondentBankEntity extends BaseEntity{
 
-    private String bankName;
+	private static final long serialVersionUID = 4356862602612016262L;
+	
+	private String bankName;
     private String bankSwift;
     private String correspondentAccount;
     

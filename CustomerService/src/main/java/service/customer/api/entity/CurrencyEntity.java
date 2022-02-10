@@ -15,7 +15,9 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class CurrencyEntity extends BaseEntity {
 
-    @Column(name = "currencyName", length = 10, nullable = false, unique = true)
+	private static final long serialVersionUID = -3578870718660905925L;
+	
+	@Column(name = "currencyName", length = 10, nullable = false, unique = true)
     private String currencyName;
 
     public String getCurrencyName() {

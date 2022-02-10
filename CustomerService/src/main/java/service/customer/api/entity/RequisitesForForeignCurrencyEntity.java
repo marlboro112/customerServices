@@ -17,7 +17,10 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class RequisitesForForeignCurrencyEntity extends BaseEntity {
     
-    @Column(name = "bankName", length = 255, nullable = false, unique = false)
+	private static final long serialVersionUID = -6717569940950902641L;
+	
+
+	@Column(name = "bankName", length = 255, nullable = false, unique = false)
     private String bankName; 
     
     @Column(name = "bankCode", length = 255, nullable = false, unique = false)
