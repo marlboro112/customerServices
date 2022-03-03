@@ -17,8 +17,16 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class CorrespondentBankEntity extends BaseEntity{
 
+<<<<<<< HEAD
     @Column(name = "bankName", length = 255, nullable = false, unique = false)
     private String bankName;
+=======
+	private static final long serialVersionUID = 4356862602612016262L;
+	
+	private String bankName;
+    private String bankSwift;
+    private String correspondentAccount;
+>>>>>>> be438f4aa1c318be6c05338bbb9d881a008289ce
     
     @Column(name = "bankSwift", length = 255, nullable = false, unique = false)
     private String bankSwift;

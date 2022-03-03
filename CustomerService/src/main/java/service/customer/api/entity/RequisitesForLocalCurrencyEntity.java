@@ -17,7 +17,9 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class RequisitesForLocalCurrencyEntity extends BaseEntity {
     
-    @Column(name = "bankName", length = 255, nullable = false, unique = false)
+	private static final long serialVersionUID = 4700626407295949960L;
+
+	@Column(name = "bankName", length = 255, nullable = false, unique = false)
     private String bankName; 
     
     @Column(name = "bankCode", length = 255, nullable = false, unique = false)
