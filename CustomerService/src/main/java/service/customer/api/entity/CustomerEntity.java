@@ -33,6 +33,10 @@ public class CustomerEntity extends BaseEntity {
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
 	private List<AddressesEntity> addresses;
 
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+	private List<AccountEntity> accounts;
+
+
 	public String getCustomerName() {
 		return customerName;
 	}
@@ -63,6 +67,14 @@ public class CustomerEntity extends BaseEntity {
 
 	public void setAddresses(List<AddressesEntity> addresses) {
 		this.addresses = addresses;
+	}
+
+	public List<AccountEntity> getAccounts() {
+		return accounts;
+	}
+
+	public void setAccounts(List<AccountEntity> accounts) {
+		this.accounts = accounts;
 	}
 	
 	
